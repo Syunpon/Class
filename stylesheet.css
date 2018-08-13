@@ -6,6 +6,7 @@ body {
     height: 140px;
     border: 6px solid #999999;
     position: relative;
+    width: 750px;
 }
 
 .title {
@@ -21,7 +22,7 @@ body {
 
 .kobuntango, .kanji {
     font-size: 40px;
-    width: 100%;
+    width: 750px;
     box-sizing: border-box ;
     border-bottom: 3px solid #999999;
     float: left;
