@@ -1,15 +1,15 @@
-﻿body {
+body {
     font-family: Avenir, Helvetica, sans-serif;
 }
 
 .header {
-    height: 70px;
-    border: 3px solid #999999;
+    height: 140px;
+    border: 6px solid #999999;
     position: relative;
 }
 
 .title {
-    font-size: 40px;
+    font-size: 80px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -19,31 +19,19 @@
     text-align: center;
 }
 
-h1 {
-    font-size: 40px;
-    text-align: center;
-}
-
-h2 {
-    font-size: 36px;
-}
-
-h3 {
-    font-size: 24px;
-}
-
 .kobuntango, .kanji {
-    font-size: 20px;
-    width: 94%;
-    border-bottom: 2px solid #999999;
+    font-size: 40px;
+    width: 100%;
+    box-sizing: border-box ;
+    border-bottom: 3px solid #999999;
     float: left;
-    padding: 10px;
+    padding: 20px;
     height: auto;
-    margin: 10px 0px 5px 0px;
+    margin: 20px 0px 1px 0px;
 }
 
 .kobuntango_, .kanji_ {
     margin: 3px;
-    font-size: 30px;
+    font-size: 60px;
     float: right;
 }
