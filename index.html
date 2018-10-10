@@ -1,30 +1,59 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="default">
-        <link rel="stylesheet" href="stylesheet.css" />
-        <title>2-H</title>
-    </head>
-    <body>
-        <div class="header">
-            <div class="title">2-H</div>
-        </div>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
 
-        <div class="content">
-            <div class="kobuntango">
-                古文単語
-                <br/>
-                <div class="kobuntango_"> 100~120</div>
-            </div>
-            
-            <br/>
-            
-            <div class="kanji">
-                漢字
-                <br />
-                <div class="kanji_"> 100~120</div>
-            </div>
-    </body>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+</head>
+<body>
+
+    <script type="text/javascript">
+    var output = "";
+    var text;
+
+      function getData() {
+        var xmlhttp = new XMLHttpRequest();
+        var dc;
+
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4) {
+            if (xmlhttp.status == 200) {
+              text = xmlhttp.responseText.split("\n");
+            } else {
+              text[0] = "取得できませんでした";
+              text[1] = "取得できませんでした";
+            }
+
+          }
+        }
+        xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZH4CS-0gox5Yfx3xf2ew-ik80rGwPUa6GsRanyPfk04ht-_qfrxllNQt7qTMPgvqeMTkNUmcCqzc1/pub?output=csv");
+        xmlhttp.send();
+
+
+      }
+
+      document.open();
+      document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
+      getData();
+      output += "<ul class=\"list\">";
+      output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
+                "漢字"
+                + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                text[0]
+                + "</div></div></li>";
+
+      output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
+                "古文単語"
+                + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                text[1]
+                + "</div></div></li>";
+
+      output += "</ul>";
+
+      document.write(output);
+      document.close();
+    </script>
+</body>
 </html>
