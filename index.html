@@ -34,26 +34,31 @@
 
       }
 
-      document.open();
-      document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
+      function main() {
+        document.open();
+        document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
+
+        output += "<ul class=\"list\">";
+        output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
+                  "漢字"
+                  + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                  text[0]
+                  + "</div></div></li>";
+
+        output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
+                  "古文単語"
+                  + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                  text[1]
+                  + "</div></div></li>";
+
+        output += "</ul>";
+
+        document.write(output);
+        document.close();
+      }
+
       getData();
-      output += "<ul class=\"list\">";
-      output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
-                "漢字"
-                + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
-                text[0]
-                + "</div></div></li>";
-
-      output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
-                "古文単語"
-                + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
-                text[1]
-                + "</div></div></li>";
-
-      output += "</ul>";
-
-      document.write(output);
-      document.close();
+      main();
     </script>
 </body>
 </html>
