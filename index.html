@@ -52,7 +52,7 @@
         if (xmlhttp2.readyState == 4) {
           if (xmlhttp2.status == 200) {
             text2 = xmlhttp2.responseText.split("\n");
-            text3 = text2[1].split(",");
+            text3 = text2[2].split(",");
 
             var elem = document.getElementById("target");
             elem.innerText = text3[1];
