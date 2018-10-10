@@ -14,8 +14,10 @@
   <script type="text/javascript">
   var output = "";
   var text;
+  var text2;
+  var text3;
 
-    function getData(var url) {
+    function getData() {
       var xmlhttp = new XMLHttpRequest();
       var dc;
 
@@ -37,12 +39,41 @@
 
         }
       }
-      xmlhttp.open("GET", url);
+      xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZH4CS-0gox5Yfx3xf2ew-ik80rGwPUa6GsRanyPfk04ht-_qfrxllNQt7qTMPgvqeMTkNUmcCqzc1/pub?output=csv");
       xmlhttp.send();
 
     }
 
-    getData("https://docs.google.com/spreadsheets/d/e/2PACX-1vSZH4CS-0gox5Yfx3xf2ew-ik80rGwPUa6GsRanyPfk04ht-_qfrxllNQt7qTMPgvqeMTkNUmcCqzc1/pub?output=csv");
+    function getData2() {
+      var xmlhttp2 = new XMLHttpRequest();
+      var dc;
+
+      xmlhttp2.onreadystatechange = function() {
+        if (xmlhttp2.readyState == 4) {
+          if (xmlhttp2.status == 200) {
+            text2 = xmlhttp2.responseText.split("\n");
+            text3 = text2[1].split(",");
+
+            var elem = document.getElementById("target");
+            elem.innerText = text3[1];
+            var elem = document.getElementById("powerstage");
+            elem.innerText = text3[2];
+          } else {
+            var elem = document.getElementById("target");
+            elem.innerText = "取得できませんでした";
+            var elem = document.getElementById("powerstage");
+            elem.innerText = "取得できませんでした";
+          }
+
+        }
+      }
+      xmlhttp2.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoRnlgjmkcExPoYnvK69L6QcjTiQdFBHqIVCiLOvIUJtB9UCky2i9OsZ0qCk2g1LQFdLmQtciFLbAO/pub?output=csv");
+      xmlhttp2.send();
+
+    }
+
+    getData();
+    getData2();
   </script>
 </head>
 <body>
@@ -80,6 +111,28 @@
       <div class="list-item__right">
         <div class="list-item__label">
           <div id="kobuntango"/>
+        </div>
+      </div>
+    </li>
+
+    <li class="list-item">
+      <div class="list-item__center">
+        ターゲット
+      </div>
+      <div class="list-item__right">
+        <div class="list-item__label">
+          <div id="target"/>
+        </div>
+      </div>
+    </li>
+
+    <li class="list-item">
+      <div class="list-item__center">
+        パワーステージ
+      </div>
+      <div class="list-item__right">
+        <div class="list-item__label">
+          <div id="powerstage"/>
         </div>
       </div>
     </li>
