@@ -14,6 +14,8 @@
   <script type="text/javascript">
   var output = "";
   var text;
+  var text_2;
+  var text_3;
   var text2;
   var text3;
 
@@ -25,11 +27,13 @@
         if (xmlhttp.readyState == 4) {
           if (xmlhttp.status == 200) {
             text = xmlhttp.responseText.split("\n");
+            text_2 = text[0].split(",");
+            text_3 = text[1].split(",");
 
             var elem = document.getElementById("kanji");
-            elem.innerText = text[0];
+            elem.innerText = text_2[1];
             var elem = document.getElementById("kobuntango");
-            elem.innerText = text[1];
+            elem.innerText = text_3[1];
           } else {
             var elem = document.getElementById("kanji");
             elem.innerText = "取得できませんでした";
@@ -39,7 +43,7 @@
 
         }
       }
-      xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZH4CS-0gox5Yfx3xf2ew-ik80rGwPUa6GsRanyPfk04ht-_qfrxllNQt7qTMPgvqeMTkNUmcCqzc1/pub?output=csv");
+      xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1Blq25RkxCD_k6VLJs-04oI95pD0R59H9FfzkIP8U-kltsF4iQjqyFHKmpcZtYFICzUrd4KN-UG7r/pub?output=csv");
       xmlhttp.send();
 
     }
