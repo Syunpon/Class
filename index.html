@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="apple-touch-icon-precomposed" href="https://syunpon.github.io/site_images/2-h_.png" />
   <title>2-H</title>
-  
+
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
@@ -15,7 +15,7 @@
   var output = "";
   var text;
 
-    function getData() {
+    function getData(var url) {
       var xmlhttp = new XMLHttpRequest();
       var dc;
 
@@ -37,12 +37,12 @@
 
         }
       }
-      xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZH4CS-0gox5Yfx3xf2ew-ik80rGwPUa6GsRanyPfk04ht-_qfrxllNQt7qTMPgvqeMTkNUmcCqzc1/pub?output=csv");
+      xmlhttp.open("GET", url);
       xmlhttp.send();
 
     }
 
-    getData();
+    getData("https://docs.google.com/spreadsheets/d/e/2PACX-1vSZH4CS-0gox5Yfx3xf2ew-ik80rGwPUa6GsRanyPfk04ht-_qfrxllNQt7qTMPgvqeMTkNUmcCqzc1/pub?output=csv");
   </script>
 </head>
 <body>
@@ -55,7 +55,7 @@
     <div class="center">2-H</div>
 
     <div class="right">
-      
+
     </div>
   </ons-toolbar>
 
