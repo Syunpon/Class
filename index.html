@@ -6,75 +6,76 @@
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+
+  <script type="text/javascript">
+  var output = "";
+  var text;
+
+    function getData() {
+      var xmlhttp = new XMLHttpRequest();
+      var dc;
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4) {
+          if (xmlhttp.status == 200) {
+            text = xmlhttp.responseText.split("\n");
+
+            document.open();
+            document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
+
+            output += "<ul class=\"list\">";
+            output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
+                      "漢字"
+                      + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                      text[0]
+                      + "</div></div></li>";
+
+            output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
+                      "古文単語"
+                      + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                      text[1]
+                      + "</div></div></li>";
+
+            output += "</ul>";
+
+            document.write(output);
+            document.close();
+
+          } else {
+            document.open();
+            document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
+
+            output += "<ul class=\"list\">";
+            output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
+                      "漢字"
+                      + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                      "取得できませんでした"
+                      + "</div></div></li>";
+
+            output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
+                      "古文単語"
+                      + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                      "取得できませんでした"
+                      + "</div></div></li>";
+
+            output += "</ul>";
+
+            document.write(output);
+            document.close();
+          }
+
+        }
+      }
+      xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZH4CS-0gox5Yfx3xf2ew-ik80rGwPUa6GsRanyPfk04ht-_qfrxllNQt7qTMPgvqeMTkNUmcCqzc1/pub?output=csv");
+      xmlhttp.send();
+
+    }
+
+    getData();
+  </script>
 </head>
 <body>
 
-    <script type="text/javascript">
-    var output = "";
-    var text;
 
-      function getData() {
-        var xmlhttp = new XMLHttpRequest();
-        var dc;
-
-        xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState == 4) {
-            if (xmlhttp.status == 200) {
-              text = xmlhttp.responseText.split("\n");
-
-              document.open();
-              document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
-
-              output += "<ul class=\"list\">";
-              output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
-                        "漢字"
-                        + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
-                        text[0]
-                        + "</div></div></li>";
-
-              output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
-                        "古文単語"
-                        + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
-                        text[1]
-                        + "</div></div></li>";
-
-              output += "</ul>";
-
-              document.write(output);
-              document.close();
-
-            } else {
-              document.open();
-              document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
-
-              output += "<ul class=\"list\">";
-              output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
-                        "漢字"
-                        + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
-                        "取得できませんでした"
-                        + "</div></div></li>";
-
-              output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
-                        "古文単語"
-                        + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
-                        "取得できませんでした"
-                        + "</div></div></li>";
-
-              output += "</ul>";
-
-              document.write(output);
-              document.close();
-            }
-
-          }
-        }
-        xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZH4CS-0gox5Yfx3xf2ew-ik80rGwPUa6GsRanyPfk04ht-_qfrxllNQt7qTMPgvqeMTkNUmcCqzc1/pub?output=csv");
-        xmlhttp.send();
-
-
-      }
-      
-      getData();
-    </script>
 </body>
 </html>
