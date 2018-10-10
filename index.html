@@ -21,9 +21,49 @@
           if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
               text = xmlhttp.responseText.split("\n");
+
+              document.open();
+              document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
+
+              output += "<ul class=\"list\">";
+              output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
+                        "漢字"
+                        + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                        text[0]
+                        + "</div></div></li>";
+
+              output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
+                        "古文単語"
+                        + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                        text[1]
+                        + "</div></div></li>";
+
+              output += "</ul>";
+
+              document.write(output);
+              document.close();
+
             } else {
-              text[0] = "取得できませんでした";
-              text[1] = "取得できませんでした";
+              document.open();
+              document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
+
+              output += "<ul class=\"list\">";
+              output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
+                        "漢字"
+                        + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                        "取得できませんでした"
+                        + "</div></div></li>";
+
+              output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
+                        "古文単語"
+                        + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
+                        "取得できませんでした"
+                        + "</div></div></li>";
+
+              output += "</ul>";
+
+              document.write(output);
+              document.close();
             }
 
           }
@@ -33,32 +73,8 @@
 
 
       }
-
-      function main() {
-        document.open();
-        document.writeln("<ons-list-header>小テスト範囲</ons-list-header>");
-
-        output += "<ul class=\"list\">";
-        output += "<li class=\"list-item\"><div class=\"list-item__center\">" +
-                  "漢字"
-                  + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
-                  text[0]
-                  + "</div></div></li>";
-
-        output += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__center\">" +
-                  "古文単語"
-                  + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" +
-                  text[1]
-                  + "</div></div></li>";
-
-        output += "</ul>";
-
-        document.write(output);
-        document.close();
-      }
-
+      
       getData();
-      main();
     </script>
 </body>
 </html>
