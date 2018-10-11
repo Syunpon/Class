@@ -101,7 +101,7 @@
           if (xmlhttp3.status == 200) {
             text4_0 = xmlhttp3.responseText.split("\n");
             for (var i = 1; i < text4_0.length; i++) {
-              text4_1 = text4_0[2].split(",");
+              text4_1 = text4_0[i].split(",");
               var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">ターゲット1900 : " + text4_1[1] + "\nパワーステージ : " + "</div></ons-list-item>";
               english.insertAdjacentHTML('beforeend', output2);
             }
