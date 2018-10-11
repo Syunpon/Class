@@ -33,7 +33,6 @@
   var text4_0;
   var text4_1;
 
-  var english = document.getElementById("English");
 
     function getData() {
       var xmlhttp = new XMLHttpRequest();
@@ -95,7 +94,7 @@
     function getData3() {
       var xmlhttp3 = new XMLHttpRequest();
       var dc;
-      english = document.getElementById("English");
+
       xmlhttp3.onreadystatechange = function() {
         if (xmlhttp3.readyState == 4) {
           if (xmlhttp3.status == 200) {
@@ -103,7 +102,7 @@
             for (var i = 1; i < text4_0.length; i++) {
               text4_1 = text4_0[i].split(",");
               var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">ターゲット1900 : " + text4_1[1] + "\nパワーステージ : " + "</div></ons-list-item>";
-              english.innerHTML += output2;
+              document.getElementById("English").innerHTML += output2;
             }
           }
 
