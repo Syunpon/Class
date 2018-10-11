@@ -101,8 +101,10 @@
             text4_0 = xmlhttp3.responseText.split("\n");
             for (var i = 2; i < text4_0.length; i++) {
               text4_1 = text4_0[i].split(",");
-              var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">ターゲット1900 : " + text4_1[1] + "\nパワーステージ : " + "</div></ons-list-item>";
-              document.getElementById("English").innerHTML += output2;
+              if (text4_1[0] != "\"") {
+                var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">ターゲット1900 : " + text4_1[1] + "<br>パワーステージ : " + text4_1[2] + "</div></ons-list-item>";
+                document.getElementById("English").innerHTML += output2;
+              }
             }
           }
 
@@ -183,7 +185,6 @@
 
   <ons-list-header>英語</ons-list-header>
   <ul class="list" id="English">
-    <ons-list-item expandable>Tap to expand<div class="expandable-content">Expandable content</div></ons-list-item>
   </ul>
 </ons-page>
 </body>
