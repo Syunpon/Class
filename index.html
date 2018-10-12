@@ -147,15 +147,17 @@
     }
     
     function RemoveQ(str) {
-      var result = str.replace('\"', ""); 
-      //「str」と「result」が同じ文字列になるまで繰り返す
-      while(result !== str) {
+      if (str !== undefined){
+        var result = str.replace('\"', ""); 
+        //「str」と「result」が同じ文字列になるまで繰り返す
+        while(result !== str) {
        
-        str = str.replace('\"', '');
-        result = result.replace('\"', "");
-      }
+          str = str.replace('\"', '');
+          result = result.replace('\"', "");
+        }
       
-      return result;
+        return result;
+      }
     }
 
     getData();
