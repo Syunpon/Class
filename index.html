@@ -32,6 +32,8 @@
   var text3;
   var text4_0;
   var text4_1;
+  var text5_0;
+  var text5_1;
 
 
     function getData() {
@@ -124,11 +126,11 @@
       xmlhttp4.onreadystatechange = function() {
         if (xmlhttp4.readyState == 4) {
           if (xmlhttp4.status == 200) {
-            text4_0 = xmlhttp4.responseText.split("===");
+            text5_0 = xmlhttp4.responseText.split("===");
 
-            for (var i = 0; i < text4_0.length; i++) {
-              text4_1 = text4_0[i].split("\n");
-                var output3 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">" + text4_1[1] + "</div></ons-list-item>";
+            for (var i = 0; i < text5_0.length; i++) {
+              text5_1 = text5_0[i].split("\n");
+                var output3 = "<ons-list-item expandable>" + text5_1[0] + "<div class=\"expandable-content\">" + text5_1[1] + "</div></ons-list-item>";
                 document.getElementById("Event").innerHTML += output3;
 
             }
@@ -136,7 +138,7 @@
 
         }
       }
-      xmlhttp4.open("GET", "http://http://syunpon.kissr.com/event.txt");
+      xmlhttp4.open("GET", "http://syunpon.kissr.com/event.txt");
       xmlhttp4.send();
 
     }
