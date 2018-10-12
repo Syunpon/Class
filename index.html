@@ -104,7 +104,7 @@
               text4_1 = text4_0[i].split(",");
               if (text4_1[1] !== undefined && text4_1[2] !== undefined) {
                 if (text4_1[2] == "\"なし") text4_1[2] = "なし";
-                var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">ターゲット : " + text4_1[1] + "<br>パワーステージ : " + text4_1[2] + "</div></ons-list-item>";
+                var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">ターゲット1900 : " + text4_1[1] + "<br>パワーステージ : " + text4_1[2] + "</div></ons-list-item>";
                 document.getElementById("English").innerHTML += output2;
               }
             }
@@ -117,9 +117,34 @@
 
     }
 
+    function getData4() {
+      var xmlhttp4 = new XMLHttpRequest();
+      var dc;
+
+      xmlhttp4.onreadystatechange = function() {
+        if (xmlhttp4.readyState == 4) {
+          if (xmlhttp4.status == 200) {
+            text4_0 = xmlhttp4.responseText.split("===");
+
+            for (var i = 0; i < text4_0.length; i++) {
+              text4_1 = text4_0[i].split("\n");
+                var output3 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">" + text4_1[1] + "</div></ons-list-item>";
+                document.getElementById("Event").innerHTML += output3;
+
+            }
+          }
+
+        }
+      }
+      xmlhttp4.open("GET", "http://http://syunpon.kissr.com/event.txt");
+      xmlhttp4.send();
+
+    }
+
     getData();
     //getData2();
     getData3();
+    gatData4();
   </script>
 </head>
 <body>
@@ -186,6 +211,11 @@
   -->
 
   </ul>
+
+  <ons-list-header>イベント</ons-list-header>
+    <ul class="list" id="Event">
+  </ul>
+
   <ons-list-header>英語</ons-list-header>
     <ul class="list" id="English">
   </ul>
