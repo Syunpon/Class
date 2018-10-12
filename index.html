@@ -130,6 +130,8 @@
 
             for (var i = 0; i < text5_0.length; i++) {
               text5_1 = text5_0[i].split("\n");
+              text5_1[0].replace("\n","");
+              text5_1[1].replace("\n","");
                 var output3 = "<ons-list-item expandable>" + text5_1[0] + "<div class=\"expandable-content\">" + text5_1[1] + "</div></ons-list-item>";
                 document.getElementById("Event").innerHTML += output3;
 
