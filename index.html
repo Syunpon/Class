@@ -96,7 +96,7 @@
     function getData3() {
       var xmlhttp3 = new XMLHttpRequest();
       var dc;
-      document.getElementById("Event").innerHTML = "";
+      document.getElementById("English").innerHTML = "";
 
       xmlhttp3.onreadystatechange = function() {
         if (xmlhttp3.readyState == 4) {
@@ -235,12 +235,22 @@
 
   <ons-list-header>イベント</ons-list-header>
   <ul class="list" id="Event">
-    <ons-progress-circular indeterminate></ons-progress-circular>
+    
+    <li class="list-item">
+    <div class="list-item__center">
+      <ons-progress-circular indeterminate></ons-progress-circular>
+    </div>
+    </li>
+  
   </ul>
 
   <ons-list-header>英語</ons-list-header>
   <ul class="list" id="English">
-    <ons-progress-circular indeterminate></ons-progress-circular>
+    <li class="list-item">
+    <div class="list-item__center">
+      <ons-progress-circular indeterminate></ons-progress-circular>
+    </div>
+    </li>
   </ul>
 
 </ons-page>
