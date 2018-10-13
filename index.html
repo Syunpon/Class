@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 
-  
+
 </head>
 <body>
   <ons-page id="main">
@@ -92,13 +92,13 @@
 
   <ons-list-header>イベント</ons-list-header>
   <ul class="list" id="Event">
-    
+
     <li class="list-item">
     <div class="list-item__center">
       <ons-progress-circular indeterminate></ons-progress-circular>
     </div>
     </li>
-  
+
   </ul>
 
   <ons-list-header>英語</ons-list-header>
@@ -185,10 +185,10 @@ var text5_1;
   function getData3() {
     var xmlhttp3 = new XMLHttpRequest();
     var dc;
-    document.getElementById("English").innerHTML = "";
 
     xmlhttp3.onreadystatechange = function() {
       if (xmlhttp3.readyState == 4) {
+        document.getElementById("English").innerHTML = "";
         if (xmlhttp3.status == 200) {
           text4_0 = xmlhttp3.responseText.split("\n");
 
@@ -212,10 +212,10 @@ var text5_1;
   function getData4() {
     var xmlhttp4 = new XMLHttpRequest();
     var dc;
-    document.getElementById("Event").innerHTML = "";
 
     xmlhttp4.onreadystatechange = function() {
       if (xmlhttp4.readyState == 4) {
+        document.getElementById("Event").innerHTML = "";
         if (xmlhttp4.status == 200) {
           text5_0 = xmlhttp4.responseText.split("\n");
 
