@@ -133,9 +133,8 @@ var text5_1;
 
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4) {
+        document.getElementById("Syoutesuto").innerHTML = "";
         if (xmlhttp.status == 200) {
-          document.getElementById("Syoutesuto").innerHTML = "";
-          
           text = xmlhttp.responseText.split("\n");
           text_2 = text[0].split(",");
           text_3 = text[1].split(",");
