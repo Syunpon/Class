@@ -197,7 +197,7 @@ var text5_1;
       if (xmlhttp3.readyState == 4) {
         document.getElementById("English").innerHTML = "";
         if (xmlhttp3.status == 200) {
-          text4_0 = xmlhttp3.responseText.split("\n");
+          text4_0 = RemoveQ(xmlhttp3.responseText).split("\n");
 
           for (var i = 2; i < text4_0.length; i++) {
             text4_1 = text4_0[i].split(",");
