@@ -151,10 +151,12 @@ var text5_1;
       if (xmlhttp2.readyState == 4) {
         if (xmlhttp2.status == 200) {
           text2 = xmlhttp2.responseText.split("\n");
+          console.log(text2);
           text3 = text2[2].split(",");
-
+           
+          //<div class="list-item__right"><div class="list-item__label">
           var elem = document.getElementById("target");
-          elem.innerHTML = text3[1];
+          elem.innerHTML += text3[1];
           var elem = document.getElementById("powerstage");
           elem.innerHTML = text3[2];
         } else {
