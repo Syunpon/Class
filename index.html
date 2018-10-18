@@ -30,10 +30,15 @@
   <ons-toolbar>
     <div class="center">2-H</div>
   </ons-toolbar>
+    
+  <div id="Syoutesuto_parent">
+    <ons-list-header>小テスト範囲</ons-list-header>
+      <div id="Syoutesuto">
+        <ons-progress-circular indeterminate></ons-progress-circular>
+      </div>
+   </div>
 
-  <ons-list-header>小テスト範囲</ons-list-header>
-
-  <ul class="list">
+  <!--<ul class="list">
     <li class="list-item">
       <div class="list-item__center">
         漢字
@@ -56,7 +61,7 @@
       </div>
     </li>
 
-    <!--
+    
       <li class="list-item">
       <div class="list-item__center">
         ターゲット
@@ -121,19 +126,23 @@ var text5_1;
     xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState == 4) {
         if (xmlhttp.status == 200) {
+          document.getElementById("Syoutesuto").innerHTML = "";
+          
           text = xmlhttp.responseText.split("\n");
           text_2 = text[0].split(",");
           text_3 = text[1].split(",");
+          
+          for (int i = 0; i < text.length; i++) {
+            var text_ = text[i].split(",");
+            document.getElementById("Syoutesuto").innerHTML += "<li class=\"list-item\"><div class=\"list-item__center\">" + text_[0] + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" + text_[1] + "</div></div></ul>";
+          }
 
-          var elem = document.getElementById("kanji");
+          /*var elem = document.getElementById("kanji");
           elem.innerHTML = text_2[1];
           var elem = document.getElementById("kobuntango");
-          elem.innerHTML = text_3[1];
+          elem.innerHTML = text_3[1];*/
         } else {
-          var elem = document.getElementById("kanji");
-          elem.innerHTML = "取得できませんでした";
-          var elem = document.getElementById("kobuntango");
-          elem.innerHTML = "取得できませんでした";
+          document.getElementById("Syoutesuto_parent").remove();
         }
 
       }
