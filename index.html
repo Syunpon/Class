@@ -206,6 +206,12 @@ var text5_1;
         document.getElementById("Event").innerHTML = "";
         if (xmlhttp4.status == 200) {
           text5_0 = xmlhttp4.responseText.split("\n");
+          
+          if (text5_0.length == 0) {
+            var element = document.getElementById("Event");
+            element.parentNode.removeChild(element);
+            
+          }
 
             for (var i = 0; i < text5_0.length; i++) {
               if (text5_0[i] != "") {
