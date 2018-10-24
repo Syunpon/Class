@@ -33,15 +33,19 @@
     
   
   <ons-card>
+    <div class="title">
     <div id="countdown">
+    </div>
     </div>
     <script type="text/javascript">
      document.getElementById("countdown").innerHTML = "残り*日";
     </script>
   </ons-card>
 
-  <ons-card>
+  
   <div id="Syoutesuto_parent">
+    <ons-card>
+      <div class="content">
     <ons-list-header>小テスト範囲</ons-list-header>
     <ul class="list">
       <div id="Syoutesuto">
@@ -54,8 +58,9 @@
     
       </div>
      </ul>
+        </div>
+      </ons-card>
    </div>
-  </ons-card>
 
   <!--<ul class="list">
     <li class="list-item">
@@ -107,6 +112,7 @@
   </ul>
   <div id="Event_parent">
   <ons-card>
+    <div class="content">
   <ons-list-header>イベント</ons-list-header>
   <ul class="list" id="Event">
 
@@ -115,16 +121,19 @@
     </li>
 
   </ul>
+      </div>
   </ons-card>
   </div>
 
   <ons-card>
+    <div class="content">
   <ons-list-header>英語</ons-list-header>
   <ul class="list" id="English">
     <li class="list-item">
       <ons-progress-circular indeterminate></ons-progress-circular>
     </li>
   </ul>
+      </div>
   </ons-card>
 
 </ons-page>
