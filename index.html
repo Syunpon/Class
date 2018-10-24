@@ -239,7 +239,7 @@ var text5_1;
               if (text5_0[i] != "") {
                 text5_1 = text5_0[i].split(",");
                 console.log(text5_1[0]);
-                var output3 = "<ons-list-item expandable>" + RemoveQ(text5_1[0]) + "<div class=\"expandable-content\">" + RemoveQ(text5_1[1]) + "</div></ons-list-item>";
+                var output3 = "<ons-list-item expandable>" + RemoveQ(text5_1[0]) + "<div class=\"expandable-content\">" + text5_1[1] + "</div></ons-list-item>";
                 document.getElementById("Event").innerHTML += output3;
               }
 
