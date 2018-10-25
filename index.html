@@ -33,15 +33,18 @@
     
   <div class="content">
   
-  <!--<ons-card>
-    <div class="title">
-    <div id="countdown">
-    </div>
-    </div>
-    <script type="text/javascript">
-     document.getElementById("countdown").innerHTML = "残り*日";
-    </script>
-  </ons-card>-->
+  <ons-card>
+    <div class="title">試験まで</div>
+<div id="countdown"></div>
+<script type="text/javascript">
+var now = new Date();
+var test_date = new Date( 2018, 10, 19, 0, 0 );
+
+var countdown = test_date - now;
+
+document.getElementById("countdown").innerHTML = "残り" + countdown.getDate() + "日";
+</script>
+  </ons-card>
 
   
   <div id="Syoutesuto_parent">
