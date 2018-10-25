@@ -235,9 +235,9 @@ var text5_1;
                 text5_1 = text5_0[i].split(",");
                 console.log(text5_1[0]);
                 var output3 = "<ons-list-item";
-                if (text5_1[1] != "" || text5_1[1] !== undefined) output3 += " expandable";
+                if (text5_1[1] != "") output3 += " expandable";
                 output3 += ">" + RemoveQ(text5_1[0]);
-                if (text5_1[1] != "" || text5_1[1] !== undefined) output3 += "<div class=\"expandable-content\">" + text5_1[1] + "</div>";
+                if (text5_1[1] != "") output3 += "<div class=\"expandable-content\">" + text5_1[1] + "</div>";
                 output3 += "</ons-list-item>";
                 document.getElementById("Event").innerHTML += output3;
               }
