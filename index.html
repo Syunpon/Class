@@ -43,9 +43,9 @@ var test_date = new Date( 2018, 10, 19, 0, 0 );
 
 var day = (test_date.getTime() - now.getTime()) / 1000 / 60 / 60 / 24;
 
-var hour = (test_date.getTime() - now.getTime() - day * 1000 * 60 * 60 *24) / 1000 / 60 / 60;
+var hour = (test_date.getTime() - now.getTime() - Math.floor(day) * 1000 * 60 * 60 *24) / 1000 / 60 / 60;
 
-document.getElementById("countdown").innerHTML = "残り" + Math.floor(day) + "日" + hour + "時間";
+document.getElementById("countdown").innerHTML = "残り" + Math.floor(day) + "日" + Math.floor(hour) + "時間";
 
 setTimeout("main()", 1000);
 }
