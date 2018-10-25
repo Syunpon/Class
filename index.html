@@ -34,15 +34,15 @@
   <div class="content">
   
   <ons-card>
-    <div class="title">試験まで</div>
+<div class="title">試験まで</div>
 <div id="countdown"></div>
 <script type="text/javascript">
 var now = new Date();
 var test_date = new Date( 2018, 10, 19, 0, 0 );
 
-var countdown = test_date - now;
+var countdown = (test_date.getTime() - now.getTime()) / 1000 / 60 / 60 / 24;
 
-document.getElementById("countdown").innerHTML = "残り" + countdown.getDate() + "日";
+document.getElementById("countdown").innerHTML = "残り" + countdown + "日";
 </script>
   </ons-card>
 
