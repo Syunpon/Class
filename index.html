@@ -34,21 +34,23 @@
   <div class="content">
   
   <ons-card>
-  <div class="title">試験まで</div>
+<div class="title">試験まで</div>
 <div id="countdown"></div>
 <script type="text/javascript">
 function main() {
 var now = new Date();
 var test_date = new Date( 2018, 10, 19, 0, 0 );
 
-var countdown = (test_date.getTime() - now.getTime()) / 1000 / 60 / 60 / 24;
+var day = (test_date.getTime() - now.getTime()) / 1000 / 60 / 60 / 24;
 
-document.getElementById("countdown").innerHTML = "残り" + Math.floor(countdown) + "日";
+var hour = (test_date.getTime() - now.getTime() - day * 1000 * 60 * 60 *24) / 1000 / 60 / 60;
+
+document.getElementById("countdown").innerHTML = "残り" + Math.floor(day) + "日" + hour + "時間";
 
 setTimeout("main()", 1000);
 }
-  main();
-</script>  
+main();
+</script>
   </ons-card>
 
   
