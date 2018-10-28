@@ -64,9 +64,7 @@
   <div class="content">
 
     <div id="Birthday_parent">
-      <ons-card>
-        <div class="title" id="Birthday"></div>
-      </ons-card>
+      
       <script type="text/javascript">
         var nowDate = new Date();
         var month_now = nowDate.getMonth() + 1;
@@ -83,7 +81,7 @@
             if (xmlhttp5.status == 200) {
               var birth_text = xmlhttp5.responseText.split("\n");
               for (var i = 0; i < birth_text.length; i++) {
-                var birth_text_1 = (birth_text[i].split(",");
+                var birth_text_1 = birth_text[i].split(",");
                 var month = parseInt(birth_text_1[0]);
                 var day = parseInt(birth_text_1[1]);
 
@@ -91,6 +89,7 @@
               }
 
               if (match_count > 0) {
+                document.getElementById("Birthday_parent").innerHTML += "<ons-card><div class=\"title\" id=\"Birthday\"></div></ons-card>";
                 document.getElementById("Birthday").innerHTML = "今日誕生日を迎える人が" + match_count + "人います🎉";
               }else {
                 document.getElementById("Birthday_parent").remove();
