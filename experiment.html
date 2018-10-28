@@ -5,6 +5,11 @@
   var d = document;
   var link = d.createElement('link');
   var link_min = d.createElement('link');
+    
+  var meta = d.createElement("meta");
+  meta.name = "apple-mobile-web-app-status-bar-style";
+  meta.content = "default";
+    
   var dark_mode_cookie;
   var r = document.cookie.split(";");
   r.forEach(function(value) {
@@ -16,6 +21,7 @@
   var href = "https://unpkg.com/onsenui/css/";
   if (dark_mode_cookie == "true") {
     href += "dark-";
+    meta.content = "black";
   }
   link.rel = 'stylesheet';
   link.type = 'text/css';
@@ -26,6 +32,7 @@
   var h = d.getElementsByTagName('head')[0];
   h.appendChild(link);
   h.appendChild(link_min);
+  //h.appendChild(meta);
 </script>
   
   
@@ -44,7 +51,7 @@
 
   <meta charset="utf-8">
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon-precomposed" href="https://syunpon.github.io/site_images/2-h_.png" />
   <title>2-H</title>
 
@@ -294,10 +301,12 @@ var text5_1;
     }
   }
   document.getElementById("dark_toggle").addEventListener('change', function() {
+    
+    var date_end = new Date(2019,2,31,0,0);
     if (document.getElementById("dark_toggle").checked) {
-      document.cookie = "dark_mode=true";
+      document.cookie = "dark_mode=true;expires=" + date_end.toGMTString();
     }else {
-      document.cookie = "dark_mode=false";
+      document.cookie = "dark_mode=false;expires=" + date_end.toGMTString();
     }
     //ChangeTheme();
     location.reload(true);
