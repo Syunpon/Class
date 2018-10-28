@@ -10,6 +10,33 @@
   gtag('config', 'UA-127299414-1');
 </script>
 
+<script type="text/javascript">
+  var d = document;
+  var link = d.createElement('link');
+  var link_min = d.createElement('link');
+  var dark_mode_cookie;
+  var r = document.cookie.split(";");
+  r.forEach(function(value) {
+    var content = value.split("=");
+    if(content[0] == "dark_mode") {
+      dark_mode_cookie = content[1];
+    }
+  });
+  var href = "https://unpkg.com/onsenui/css/";
+  if (dark_mode_cookie == "true") {
+    href += "dark-";
+  }
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link_min.rel = 'stylesheet';
+  link_min.type = 'text/css';
+  link.href = href + "onsen-css-components.css";
+  link_min.href = href + "onsen-css-components.min.css";
+  var h = d.getElementsByTagName('head')[0];
+  h.appendChild(link);
+  h.appendChild(link_min);
+</script>
+
 
 
   <meta charset="utf-8">
@@ -18,32 +45,7 @@
   <link rel="apple-touch-icon-precomposed" href="https://syunpon.github.io/site_images/2-h_.png" />
   <title>2-H</title>
 
-  <script type="text/javascript">
-		var d = document;
-		var link = d.createElement('link');
-    var link_min = d.createElement('link');
-    var dark_mode_cookie;
-    var r = document.cookie.split(";");
-    r.forEach(function(value) {
-      var content = value.split("=");
-      if(content[0] == "dark_mode") {
-        dark_mode_cookie = content[1];
-      }
-    });
-    var href = "https://unpkg.com/onsenui/css/";
-    if (dark_mode_cookie == "true") {
-      href += "dark-";
-    }
-    link.rel = 'stylesheet';
-		link.type = 'text/css';
-    link_min.rel = 'stylesheet';
-		link_min.type = 'text/css';
-		link.href = href + "onsen-css-components.css";
-    link_min.href = href + "onsen-css-components.min.css";
-		var h = d.getElementsByTagName('head')[0];
-		h.appendChild(link);
-    h.appendChild(link_min);
-	</script>
+
   <script id="core_js" src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 
 
@@ -131,7 +133,7 @@
       </ons-list>
     </div>
   </ons-card>
-  
+
   </div>
 </ons-page>
 
