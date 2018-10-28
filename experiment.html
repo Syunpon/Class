@@ -21,7 +21,7 @@
 
   <link id="css" rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link id="css_min" rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
-  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script id="core_js" src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 
 
 </head>
@@ -317,6 +317,8 @@ var text5_1;
       document.getElementById("css").href = "css/onsen-css-components.css";
       document.getElementById("css_min").href = "css/onsen-css-components.min.css";
     }
+    
+    document.getElementById("core_js").href = "https://unpkg.com/onsenui/js/onsenui.min.js";
   }
 
   document.getElementById("dark_toggle").addEventListener('change', function() {
