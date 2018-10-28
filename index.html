@@ -19,8 +19,8 @@
   <link rel="apple-touch-icon-precomposed" href="https://syunpon.github.io/site_images/2-h_.png" />
   <title>2-H</title>
 
-  
-  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <link id="css" rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link id="css_min" rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 
 
@@ -30,9 +30,9 @@
   <ons-toolbar>
     <div class="center">2-H</div>
   </ons-toolbar>
-    
+
   <div class="content">
-  
+
   <ons-card>
 <div class="title">試験まで</div>
 <div id="countdown"></div>
@@ -54,33 +54,33 @@ main();
 </script>
   </ons-card>
 
-  
+
   <div id="Syoutesuto_parent">
     <ons-card>
-      
+
     <!--<div class="title">小テスト範囲</div>-->
       <div class="content">
     <ons-list-header>小テスト範囲</ons-list-header>
     <ul class="list">
       <div id="Syoutesuto">
-        
+
         <li class="list-item">
           <div class="list-item__right">
               <ons-progress-circular indeterminate></ons-progress-circular>
           </div>
         </li>
-    
+
       </div>
      </ul>
         </div>
       </ons-card>
     </div>
   </ul>
-    
+
   <div id="Event_parent">
   <ons-card>
     <!--<div class="title">イベント</div>-->
-    
+
     <div class="content">
   <ons-list-header>イベント</ons-list-header>
   <ul class="list" id="Event">
@@ -96,7 +96,7 @@ main();
 
   <ons-card>
     <!--<div class="title">英語</div>-->
-    
+
     <div class="content">
   <ons-list-header>英語</ons-list-header>
   <ul class="list" id="English">
@@ -106,6 +106,22 @@ main();
   </ul>
       </div>
   </ons-card>
+
+
+<ons-card>
+<ons-list>
+  <div class="content">
+    <ons-list-item>
+      <div class="center">
+        ダークモード
+      </div>
+      <div class="right">
+        <ons-switch id="dark_toggle"></ons-switch>
+      </div>
+    </ons-list-item>
+</div>
+</ons-list>
+</ons-card>
 </div>
 </ons-page>
 
@@ -133,7 +149,7 @@ var text5_1;
           text = xmlhttp.responseText.split("\n");
           text_2 = text[0].split(",");
           text_3 = text[1].split(",");
-          
+
           for (var i = 0; i < text.length; i++) {
             var text_ = text[i].split(",");
             document.getElementById("Syoutesuto").innerHTML += "<li class=\"list-item\"><div class=\"list-item__center\">" + text_[0] + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" + text_[1] + "</div></div></ul>";
@@ -164,7 +180,7 @@ var text5_1;
           text2 = xmlhttp2.responseText.split("\n");
           console.log(text2);
           text3 = text2[2].split(",");
-           
+
           //<div class="list-item__right"><div class="list-item__label">
           var elem = document.getElementById("target");
           elem.innerHTML += text3[1];
@@ -220,13 +236,13 @@ var text5_1;
         document.getElementById("Event").innerHTML = "";
         if (xmlhttp4.status == 200) {
           text5_0 = xmlhttp4.responseText.split("\n");
-          
+
           console.log(text5_0);
-          
+
           if (text5_0 == "") {
             //var output4 = "<li class=\"list-item\"><div class=\"list-item__center\">なし</div></li>";
             //document.getElementById("Event").innerHTML += output4;
-            
+
             document.getElementById("Event_parent").remove();
           }
 
@@ -265,7 +281,7 @@ var text5_1;
       return result;
     }
   }
-  
+
   function RemoveCR(str) {
     if (str !== undefined){
       var result = str.replace('\r', "");
@@ -279,6 +295,16 @@ var text5_1;
       return result;
     }
   }
+
+  document.getElementById("dark_toggle").addEventListener('change', function() {
+    if (document.getElementById("dark_toggle").checked) {
+      document.getElementById("css").href = "css/dark_onsen-css-components.css";
+      document.getElementById("css_min").href = "css/dark_onsen-css-components.min.css";
+    }else {
+      document.getElementById("css").href = "css/onsen-css-components.css";
+      document.getElementById("css_min").href = "css/onsen-css-components.min.css";
+    }
+  });
 
   getData();
   //getData2();
