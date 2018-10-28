@@ -301,8 +301,10 @@ var text5_1;
     }
   }
   document.getElementById("dark_toggle").addEventListener('change', function() {
+    
+    var date_end = new Date(2019,2,31,0,0);
     if (document.getElementById("dark_toggle").checked) {
-      document.cookie = "dark_mode=true";
+      document.cookie = "dark_mode=true;expires=" + date_end.toGMTString();
     }else {
       document.cookie = "dark_mode=false";
     }
