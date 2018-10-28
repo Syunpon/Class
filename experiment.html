@@ -19,8 +19,40 @@
   <link rel="apple-touch-icon-precomposed" href="https://syunpon.github.io/site_images/2-h_.png" />
   <title>2-H</title>
 
-  <link id="css" rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-  <link id="css_min" rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script type="text/javascript">
+		var d = document;
+		var link = d.createElement('link');
+    var link_min = d.createElement('link');
+
+    var dark_mode_cookie;
+    var r = document.cookie.split(";");
+
+    r.forEach(function(value) {
+      var content = value.split("=");
+
+      if(content[0] == "dark_mode") {
+        dark_mode_cookie = content[1];
+      }
+    });
+
+    var href = "css/";
+
+    if (dark_mode_cookie == "true") {
+      href += "dark_";
+    }
+
+    link.rel = 'stylesheet';
+		link.type = 'text/css';
+    link_min.rel = 'stylesheet';
+		link_min.type = 'text/css';
+
+		link.href = href + "onsen-css-components.css";
+    link_min.href = href + "onsen-css-components.min.css";
+
+		var h = d.getElementsByTagName('head')[0];
+		h.appendChild(link);
+    h.appendChild(link_min);
+	</script>
   <script id="core_js" src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 
 
@@ -32,21 +64,6 @@
   </ons-toolbar>
 
   <div class="content">
-    
-    <ons-card>
-<ons-list>
-  <div class="content">
-    <ons-list-item>
-      <div class="center">
-        ダークモード
-      </div>
-      <div class="right">
-        <ons-switch id="dark_toggle"></ons-switch>
-      </div>
-    </ons-list-item>
-</div>
-</ons-list>
-</ons-card>
 
   <ons-card>
 <div class="title">試験まで</div>
@@ -123,7 +140,20 @@ main();
   </ons-card>
 
 
-
+<ons-card>
+<ons-list>
+  <div class="content">
+    <ons-list-item>
+      <div class="center">
+        ダークモード
+      </div>
+      <div class="right">
+        <ons-switch id="dark_toggle"></ons-switch>
+      </div>
+    </ons-list-item>
+</div>
+</ons-list>
+</ons-card>
 </div>
 </ons-page>
 
@@ -298,7 +328,7 @@ var text5_1;
     }
   }
 
-  function ChangeTheme() {
+  function SetDarkToggle() {
     var dark_mode_cookie;
     var r = document.cookie.split(";");
 
@@ -311,14 +341,8 @@ var text5_1;
     });
 
     if (dark_mode_cookie == "true") {
-      document.getElementById("css").href = "css/dark_onsen-css-components.css";
-      document.getElementById("css_min").href = "css/dark_onsen-css-components.min.css";
-    }else {
-      document.getElementById("css").href = "css/onsen-css-components.css";
-      document.getElementById("css_min").href = "css/onsen-css-components.min.css";
+      document.getElementById("dark_toggle").setAttribute('checked', 'true');
     }
-    
-    document.getElementById("core_js").href = "https://unpkg.com/onsenui/js/onsenui.min.js";
   }
 
   document.getElementById("dark_toggle").addEventListener('change', function() {
@@ -327,10 +351,11 @@ var text5_1;
     }else {
       document.cookie = "dark_mode=false";
     }
-    ChangeTheme();
+    //ChangeTheme();
+    location.reload(true);
   });
 
-  ChangeTheme();
+  SetDarkToggle();
   getData();
   //getData2();
   getData3();
