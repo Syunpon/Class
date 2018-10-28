@@ -306,7 +306,7 @@ var text5_1;
     if (document.getElementById("dark_toggle").checked) {
       document.cookie = "dark_mode=true;expires=" + date_end.toGMTString();
     }else {
-      document.cookie = "dark_mode=false";
+      document.cookie = "dark_mode=false;expires=" + date_end.toGMTString();
     }
     //ChangeTheme();
     location.reload(true);
