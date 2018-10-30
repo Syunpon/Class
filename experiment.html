@@ -197,22 +197,6 @@ content.load(page)
       </div>
     </ons-card>
 
-
-  <ons-card>
-    <div class="content">
-      <ons-list>
-        <ons-list-item>
-          <div class="center">
-            ダークモード
-          </div>
-          <div class="right">
-            <ons-switch id="dark_toggle"></ons-switch>
-          </div>
-        </ons-list-item>
-      </ons-list>
-    </div>
-  </ons-card>
-
   </div>
 <script type="text/javascript">
 var output = "";
@@ -352,7 +336,7 @@ var text5_1;
       return result;
     }
   }
-  function SetDarkToggle() {
+  /*function SetDarkToggle() {
     var dark_mode_cookie;
     var r = document.cookie.split(";");
     r.forEach(function(value) {
@@ -374,7 +358,8 @@ var text5_1;
     //ChangeTheme();
     location.reload(true);
   });
-  SetDarkToggle();
+
+  SetDarkToggle();*/
   getData();
   //getData2();
   getData3();
@@ -396,6 +381,48 @@ var text5_1;
       Settings
     </div>
   </ons-toolbar>
+
+  <ons-card>
+    <div class="content">
+      <ons-list>
+        <ons-list-item>
+          <div class="center">
+            ダークモード
+          </div>
+          <div class="right">
+            <ons-switch id="dark_toggle"></ons-switch>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </div>
+  </ons-card>
+
+  <script type="text/javascript">
+    function SetDarkToggle() {
+      var dark_mode_cookie;
+      var r = document.cookie.split(";");
+      r.forEach(function(value) {
+        var content = value.split("=");
+        if(content[0] == "dark_mode") {
+          dark_mode_cookie = content[1];
+        }
+      });
+      if (dark_mode_cookie == "true") {
+        document.getElementById("dark_toggle").setAttribute('checked', 'true');
+      }
+    }
+    document.getElementById("dark_toggle").addEventListener('change', function() {
+      if (document.getElementById("dark_toggle").checked) {
+        document.cookie = "dark_mode=true";
+      }else {
+        document.cookie = "dark_mode=false";
+      }
+      //ChangeTheme();
+      location.reload(true);
+    });
+
+    SetDarkToggle();
+  </script>
 </ons-page>
 </template>
 </body>
