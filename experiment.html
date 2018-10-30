@@ -384,7 +384,7 @@ var text5_1;
       </ons-toolbar-button>
     </div>
     <div class="center">
-      Settings
+      設定
     </div>
   </ons-toolbar>
 
@@ -418,10 +418,17 @@ var text5_1;
       }
     }
     document.getElementById("dark_toggle").addEventListener('change', function() {
-      if (document.getElementById("dark_toggle").checked) {
-        document.cookie = "dark_mode=true";
+      var nowDate2 = new Date();
+      var date_end;
+      if (nowDate2.getMonth() <= 2) {
+        date_end = new Date(nowDate2.getFullYear(), 2, 31, 0, 0);
       }else {
-        document.cookie = "dark_mode=false";
+        date_end = new Date(nowDate2.getFullYear() + 1, 2, 31, 0, 0);
+      }
+      if (document.getElementById("dark_toggle").checked) {
+        document.cookie = "dark_mode=true;expires=" + date_end.toGMTString();
+      }else {
+        document.cookie = "dark_mode=false;expires=" + date_end.toGMTString();
       }
       //ChangeTheme();
       location.reload(true);
