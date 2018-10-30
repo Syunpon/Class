@@ -56,24 +56,61 @@
 
 </head>
 <body>
+  <ons-splitter>
+  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+    <ons-page>
+      <ons-list>
+        <ons-list-item onclick="fn.load('home.html')" tappable>
+          Home
+        </ons-list-item>
+        <ons-list-item onclick="fn.load('settings.html')" tappable>
+          Settings
+        </ons-list-item>
+      </ons-list>
+    </ons-page>
+  </ons-splitter-side>
+  <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+</ons-splitter>
+
+<script type="text/javascript">
+window.fn = {};
+
+window.fn.open = function() {
+var menu = document.getElementById('menu');
+menu.open();
+};
+
+window.fn.load = function(page) {
+var content = document.getElementById('content');
+var menu = document.getElementById('menu');
+content.load(page)
+  .then(menu.close.bind(menu));
+};
+</script>
+
+<template id="home.html">
+
   <ons-page id="main">
   <ons-toolbar>
+    <div class="left">
+        <ons-toolbar-button onclick="fn.open()">
+          <ons-icon icon="md-menu"></ons-icon>
+        </ons-toolbar-button>
+      </div>
     <div class="center">2-H</div>
   </ons-toolbar>
 
   <div class="content">
 
     <div id="Birthday_parent">
-      
+
       <script type="text/javascript">
         var nowDate = new Date();
         var month_now = nowDate.getMonth() + 1;
         var day_now = nowDate.getDate();
         console.log(month_now);
         console.log(day_now);
-
         var match_count = 0;
-
         var xmlhttp5 = new XMLHttpRequest();
         var dc;
         xmlhttp5.onreadystatechange = function() {
@@ -84,10 +121,8 @@
                 var birth_text_1 = birth_text[i].split(",");
                 var month = parseInt(birth_text_1[0]);
                 var day = parseInt(birth_text_1[1]);
-
                 if (month == month_now && day == day_now) match_count++;
               }
-
               if (match_count > 0) {
                 document.getElementById("Birthday_parent").innerHTML += "<ons-card><div class=\"title\" id=\"Birthday\"></div></ons-card>";
                 document.getElementById("Birthday").innerHTML = "今日誕生日を迎える人が" + match_count + "人います🎉";
@@ -179,8 +214,6 @@
   </ons-card>
 
   </div>
-</ons-page>
-
 <script type="text/javascript">
 var output = "";
 var text;
@@ -332,7 +365,6 @@ var text5_1;
       document.getElementById("dark_toggle").setAttribute('checked', 'true');
     }
   }
-
   document.getElementById("dark_toggle").addEventListener('change', function() {
     if (document.getElementById("dark_toggle").checked) {
       document.cookie = "dark_mode=true";
@@ -342,9 +374,6 @@ var text5_1;
     //ChangeTheme();
     location.reload(true);
   });
-
-
-
   SetDarkToggle();
   getData();
   //getData2();
@@ -352,5 +381,22 @@ var text5_1;
   getData4();
 </script>
 
+</ons-page>
+</template>
+
+<template id="settings.html">
+<ons-page>
+  <ons-toolbar>
+    <div class="left">
+      <ons-toolbar-button onclick="fn.open()">
+        <ons-icon icon="md-menu"></ons-icon>
+      </ons-toolbar-button>
+    </div>
+    <div class="center">
+      Settings
+    </div>
+  </ons-toolbar>
+</ons-page>
+</template>
 </body>
 </html>
