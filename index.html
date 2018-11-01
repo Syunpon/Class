@@ -264,10 +264,14 @@
             document.getElementById("English").innerHTML = "";
             if (xmlhttp3.status == 200) {
               text4_0 = RemoveQ(xmlhttp3.responseText).split("\n");
+
+              var label1 = text4_0[0].split(",")[1];
+              var label2 = text4_0[0].split(",")[2];
+
               for (var i = 2; i < text4_0.length; i++) {
                 text4_1 = text4_0[i].split(",");
                 if (text4_1[0] != "" && text4_1[1] !== undefined && text4_1[2] !== undefined) {
-                  var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">ターゲット : " + text4_1[1] + "<br>パワーステージ : " + text4_1[2] + "</div></ons-list-item>";
+                  var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">" + label1 + " : " + text4_1[1] + "<br>" + label2 + " : " + text4_1[2] + "</div></ons-list-item>";
                   document.getElementById("English").innerHTML += output2;
                 }
               }
