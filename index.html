@@ -264,6 +264,7 @@
             document.getElementById("English").innerHTML = "";
             if (xmlhttp3.status == 200) {
               text4_0 = RemoveQ(xmlhttp3.responseText).split("\n");
+              console.log(text4_0);
 
               var label1 = text4_0[0].split(",")[1];
               var label2 = text4_0[0].split(",")[2];
