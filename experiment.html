@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
   <script type="text/javascript">
   var d = document;
@@ -26,21 +27,16 @@
   var h = d.getElementsByTagName('head')[0];
   h.appendChild(link);
   h.appendChild(link_min);
-</script>
-
+  </script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127299414-1"></script>
-<script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127299414-1"></script>
+  <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'UA-127299414-1');
-</script>
-
-
-
-
+  </script>
 
   <meta charset="utf-8">
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,393 +46,393 @@
 
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-
-
-
-
 </head>
+
 <body>
   <ons-splitter>
-  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-    <ons-page>
-      <ons-list>
-        <ons-list-item onclick="fn.load('home.html')" tappable>
-          ホーム
-        </ons-list-item>
-        <ons-list-item onclick="fn.load('settings.html')" tappable>
-          設定
-        </ons-list-item>
-      </ons-list>
-    </ons-page>
-  </ons-splitter-side>
-  <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
-</ons-splitter>
+    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+      <ons-page>
+        <ons-list>
+          <ons-list-item onclick="fn.load('home.html')" tappable>
+            ホーム
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('settings.html')" tappable>
+            設定
+          </ons-list-item>
+        </ons-list>
+      </ons-page>
+    </ons-splitter-side>
 
-<script type="text/javascript">
-window.fn = {};
-
-window.fn.open = function() {
-var menu = document.getElementById('menu');
-menu.open();
-};
-
-window.fn.load = function(page) {
-var content = document.getElementById('content');
-var menu = document.getElementById('menu');
-content.load(page)
-  .then(menu.close.bind(menu));
-};
-</script>
-
-<template id="home.html">
-
-  <ons-page id="main">
-  <ons-toolbar>
-    <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-    <div class="center">2-H</div>
-  </ons-toolbar>
-
-  <div class="content">
-
-    <div id="Birthday_parent"></div>
-
-    <script type="text/javascript">
-      var xmlhttp5 = new XMLHttpRequest();
-      var birth_text = "";
-
-      xmlhttp5.onreadystatechange = function() {
-        if (xmlhttp5.readyState == 4) {
-          if (xmlhttp5.status == 200) {
-            birth_text = xmlhttp5.responseText.split("\n");
-            CheckBirthday();
-          }
-        }
-      }
-
-      xmlhttp5.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpVZ_6TTbmr47W9dQdwDQKuWYN2OlKw1AIDgloPmSM7qbY2oCYsKM9xOtCC-NPmDMWzIIqjbw50mV0/pub?output=csv");
-      xmlhttp5.send();
-
-      function CheckBirthday() {
-        var nowDate = new Date();
-        var month_now = nowDate.getMonth() + 1;
-        var day_now = nowDate.getDate();
-        var match_count = 0;
-
-        for (var i = 0; i < birth_text.length; i++) {
-          var birth_text_1 = birth_text[i].split(",");
-          var month = parseInt(birth_text_1[0]);
-          var day = parseInt(birth_text_1[1]);
-          if (month == month_now && day == day_now) match_count++;
-        }
-
-        if (match_count > 0) {
-          document.getElementById("Birthday_parent").innerHTML = "<ons-card><div class=\"title\" id=\"Birthday\"></div></ons-card>";
-          document.getElementById("Birthday").innerHTML = "今日誕生日を迎える人が" + match_count + "人います🎉";
-        }else {
-          document.getElementById("Birthday_parent").innerHTML = "";
-        }
-        setTimeout("CheckBirthday()", 1000);
-      }
-    </script>
-
-    <ons-card>
-      <div class="title">試験まで</div>
-      <div id="countdown"></div>
-      <script type="text/javascript">
-        function main() {
-          var now = new Date();
-          var test_date = new Date( 2018, 10, 19, 0, 0 );
-          var day = (test_date.getTime() - now.getTime()) / 1000 / 60 / 60 / 24;
-          var hour = (test_date.getTime() - now.getTime() - Math.floor(day) * 1000 * 60 * 60 *24) / 1000 / 60 / 60;
-          document.getElementById("countdown").innerHTML = "";
-          if (Math.floor(day) > 0) document.getElementById("countdown").innerHTML += "残り" + Math.floor(day) + "日";
-          if (Math.floor(hour) > 0) document.getElementById("countdown").innerHTML += Math.floor(hour) + "時間";
-          setTimeout("main()", 1000);
-        }
-        main();
-      </script>
-    </ons-card>
-
-
-    <div id="Syoutesuto_parent">
-      <ons-card>
-      <div class="content">
-        <ons-list-header>小テスト範囲</ons-list-header>
-        <ul class="list">
-          <div id="Syoutesuto">
-            <li class="list-item">
-              <div class="list-item__right">
-                <ons-progress-circular indeterminate></ons-progress-circular>
-              </div>
-            </li>
-          </div>
-        </ul>
-      </div>
-      </ons-card>
-    </div>
-
-    <div id="Event_parent">
-      <ons-card>
-        <div class="content">
-          <ons-list-header>イベント</ons-list-header>
-          <ul class="list" id="Event">
-            <li class="list-item">
-              <ons-progress-circular indeterminate></ons-progress-circular>
-            </li>
-          </ul>
-        </div>
-      </ons-card>
-    </div>
-
-    <ons-card>
-      <div class="content">
-        <ons-list-header>英語</ons-list-header>
-        <ul class="list" id="English">
-          <li class="list-item">
-            <ons-progress-circular indeterminate></ons-progress-circular>
-          </li>
-        </ul>
-      </div>
-    </ons-card>
-
-  </div>
-<script type="text/javascript">
-var output = "";
-var text;
-var text_2;
-var text_3;
-var text2;
-var text3;
-var text4_0;
-var text4_1;
-var text5_0;
-var text5_1;
-  function getData() {
-    var xmlhttp = new XMLHttpRequest();
-    var dc;
-    xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState == 4) {
-        document.getElementById("Syoutesuto").innerHTML = "";
-        if (xmlhttp.status == 200) {
-          text = xmlhttp.responseText.split("\n");
-          text_2 = text[0].split(",");
-          text_3 = text[1].split(",");
-          for (var i = 0; i < text.length; i++) {
-            var text_ = text[i].split(",");
-            document.getElementById("Syoutesuto").innerHTML += "<li class=\"list-item\"><div class=\"list-item__center\">" + text_[0] + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" + text_[1] + "</div></div></ul>";
-          }
-          /*var elem = document.getElementById("kanji");
-          elem.innerHTML = text_2[1];
-          var elem = document.getElementById("kobuntango");
-          elem.innerHTML = text_3[1];*/
-        } else {
-          document.getElementById("Syoutesuto_parent").remove();
-        }
-      }
-    }
-    xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1Blq25RkxCD_k6VLJs-04oI95pD0R59H9FfzkIP8U-kltsF4iQjqyFHKmpcZtYFICzUrd4KN-UG7r/pub?output=csv");
-    xmlhttp.send();
-  }
-  function getData2() {
-    var xmlhttp2 = new XMLHttpRequest();
-    var dc;
-    xmlhttp2.onreadystatechange = function() {
-      if (xmlhttp2.readyState == 4) {
-        if (xmlhttp2.status == 200) {
-          text2 = xmlhttp2.responseText.split("\n");
-          console.log(text2);
-          text3 = text2[2].split(",");
-          //<div class="list-item__right"><div class="list-item__label">
-          var elem = document.getElementById("target");
-          elem.innerHTML += text3[1];
-          var elem = document.getElementById("powerstage");
-          elem.innerHTML = text3[2];
-        } else {
-          var elem = document.getElementById("target");
-          elem.innerHTML = "取得できませんでした";
-          var elem = document.getElementById("powerstage");
-          elem.innerHTML = "取得できませんでした";
-        }
-      }
-    }
-    xmlhttp2.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoRnlgjmkcExPoYnvK69L6QcjTiQdFBHqIVCiLOvIUJtB9UCky2i9OsZ0qCk2g1LQFdLmQtciFLbAO/pub?output=csv");
-    xmlhttp2.send();
-  }
-  function getData3() {
-    var xmlhttp3 = new XMLHttpRequest();
-    var dc;
-    xmlhttp3.onreadystatechange = function() {
-      if (xmlhttp3.readyState == 4) {
-        document.getElementById("English").innerHTML = "";
-        if (xmlhttp3.status == 200) {
-          text4_0 = RemoveQ(xmlhttp3.responseText).split("\n");
-          for (var i = 2; i < text4_0.length; i++) {
-            text4_1 = text4_0[i].split(",");
-            if (text4_1[0] != "" && text4_1[1] !== undefined && text4_1[2] !== undefined) {
-              //if (text4_1[2] == "\"なし") text4_1[2] = "なし";
-              var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">ターゲット : " + text4_1[1] + "<br>パワーステージ : " + text4_1[2] + "</div></ons-list-item>";
-              document.getElementById("English").innerHTML += output2;
-            }
-          }
-        }
-      }
-    }
-    xmlhttp3.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoRnlgjmkcExPoYnvK69L6QcjTiQdFBHqIVCiLOvIUJtB9UCky2i9OsZ0qCk2g1LQFdLmQtciFLbAO/pub?output=csv");
-    xmlhttp3.send();
-  }
-  function getData4() {
-    var xmlhttp4 = new XMLHttpRequest();
-    var dc;
-    xmlhttp4.onreadystatechange = function() {
-      if (xmlhttp4.readyState == 4) {
-        document.getElementById("Event").innerHTML = "";
-        if (xmlhttp4.status == 200) {
-          text5_0 = xmlhttp4.responseText.split("\n");
-          console.log(text5_0);
-          if (text5_0 == "") {
-            //var output4 = "<li class=\"list-item\"><div class=\"list-item__center\">なし</div></li>";
-            //document.getElementById("Event").innerHTML += output4;
-            document.getElementById("Event_parent").remove();
-          }
-            for (var i = 0; i < text5_0.length; i++) {
-              if (text5_0[i] != "") {
-                text5_1 = RemoveCR(text5_0[i]).split(",");
-                console.log(text5_1[1]);
-                var output3 = "<ons-list-item";
-                if (text5_1[1] != "") output3 += " expandable";
-                output3 += ">" + RemoveQ(text5_1[0]);
-                if (text5_1[1] != "") output3 += "<div class=\"expandable-content\">" + text5_1[1] + "</div>";
-                output3 += "</ons-list-item>";
-                document.getElementById("Event").innerHTML += output3;
-              }
-            }
-        }
-      }
-    }
-    xmlhttp4.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRSroeDKgmopsQoM8ddstJcccESeOwPxIEP97-JZT15vPt7Hp-oUNKUXvnzqDW_Q52UmmGQ63ODyRxE/pub?output=csv");
-    xmlhttp4.send();
-  }
-  function RemoveQ(str) {
-    if (str !== undefined){
-      var result = str.replace('\"', "");
-      //「str」と「result」が同じ文字列になるまで繰り返す
-      while(result !== str) {
-        str = str.replace('\"', '');
-        result = result.replace('\"', "");
-      }
-      return result;
-    }
-  }
-  function RemoveCR(str) {
-    if (str !== undefined){
-      var result = str.replace('\r', "");
-      //「str」と「result」が同じ文字列になるまで繰り返す
-      while(result !== str) {
-        str = str.replace('\r', '');
-        result = result.replace('\r', "");
-      }
-      return result;
-    }
-  }
-  /*function SetDarkToggle() {
-    var dark_mode_cookie;
-    var r = document.cookie.split(";");
-    r.forEach(function(value) {
-      var content = value.split("=");
-      if(content[0] == "dark_mode") {
-        dark_mode_cookie = content[1];
-      }
-    });
-    if (dark_mode_cookie == "true") {
-      document.getElementById("dark_toggle").setAttribute('checked', 'true');
-    }
-  }
-  document.getElementById("dark_toggle").addEventListener('change', function() {
-    if (document.getElementById("dark_toggle").checked) {
-      document.cookie = "dark_mode=true";
-    }else {
-      document.cookie = "dark_mode=false";
-    }
-    //ChangeTheme();
-    location.reload(true);
-  });
-
-  SetDarkToggle();*/
-  getData();
-  //getData2();
-  getData3();
-  getData4();
-</script>
-
-</ons-page>
-</template>
-
-<template id="settings.html">
-<ons-page>
-  <ons-toolbar>
-    <div class="left">
-      <ons-toolbar-button onclick="fn.open()">
-        <ons-icon icon="md-menu"></ons-icon>
-      </ons-toolbar-button>
-    </div>
-    <div class="center">
-      設定
-    </div>
-  </ons-toolbar>
-
-  <ons-card>
-    <div class="content">
-      <ons-list>
-        <ons-list-item>
-          <div class="center">
-            ダークモード
-          </div>
-          <div class="right">
-            <ons-switch id="dark_toggle"></ons-switch>
-          </div>
-        </ons-list-item>
-      </ons-list>
-    </div>
-  </ons-card>
+    <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+  </ons-splitter>
 
   <script type="text/javascript">
-    function SetDarkToggle() {
-      var dark_mode_cookie;
-      var r = document.cookie.split(";");
-      r.forEach(function(value) {
-        var content = value.split("=");
-        if(content[0] == "dark_mode") {
-          dark_mode_cookie = content[1];
-        }
-      });
-      if (dark_mode_cookie == "true") {
-        document.getElementById("dark_toggle").setAttribute('checked', 'true');
-      }
-    }
-    document.getElementById("dark_toggle").addEventListener('change', function() {
-      var nowDate2 = new Date();
-      var date_end;
-      if (nowDate2.getMonth() <= 2) {
-        date_end = new Date(nowDate2.getFullYear(), 2, 31, 0, 0);
-      }else {
-        date_end = new Date(nowDate2.getFullYear() + 1, 2, 31, 0, 0);
-      }
-      if (document.getElementById("dark_toggle").checked) {
-        document.cookie = "dark_mode=true;expires=" + date_end.toGMTString();
-      }else {
-        document.cookie = "dark_mode=false;expires=" + date_end.toGMTString();
-      }
-      //ChangeTheme();
-      location.reload(true);
-    });
+  window.fn = {};
+  window.fn.open = function() {
+    var menu = document.getElementById('menu');
+    menu.open();
+  };
 
-    SetDarkToggle();
+  window.fn.load = function(page) {
+    var content = document.getElementById('content');
+    var menu = document.getElementById('menu');
+    content.load(page).then(menu.close.bind(menu));
+  };
   </script>
-</ons-page>
-</template>
+
+  <template id="home.html">
+
+    <ons-page id="main">
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">2-H</div>
+      </ons-toolbar>
+
+      <div class="content">
+
+        <div id="Birthday_parent"></div>
+
+        <script type="text/javascript">
+        var xmlhttp5 = new XMLHttpRequest();
+        var birth_text = "";
+
+        xmlhttp5.onreadystatechange = function() {
+          if (xmlhttp5.readyState == 4) {
+            if (xmlhttp5.status == 200) {
+              birth_text = xmlhttp5.responseText.split("\n");
+              CheckBirthday();
+            }
+          }
+        }
+
+        xmlhttp5.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRpVZ_6TTbmr47W9dQdwDQKuWYN2OlKw1AIDgloPmSM7qbY2oCYsKM9xOtCC-NPmDMWzIIqjbw50mV0/pub?output=csv");
+        xmlhttp5.send();
+
+        function CheckBirthday() {
+          var nowDate = new Date();
+          var month_now = nowDate.getMonth() + 1;
+          var day_now = nowDate.getDate();
+
+          var tomorrowDate = new Date();
+          tomorrowDate.setDate( tomorrowDate.getDate() + 1);
+          var month_tomorrow = tomorrowDate.getMonth() + 1;
+          var day_tomorrow = tomorrowDate.getDate();
+
+          var match_count = 0;
+          var match_count2 = 0;
+
+          for (var i = 0; i < birth_text.length; i++) {
+            var birth_text_1 = birth_text[i].split(",");
+            var month = parseInt(birth_text_1[0]);
+            var day = parseInt(birth_text_1[1]);
+            if (month == month_now && day == day_now) match_count++;
+          }
+
+          for (var i = 0; i < birth_text.length; i++) {
+            var birth_text_1 = birth_text[i].split(",");
+            var month = parseInt(birth_text_1[0]);
+            var day = parseInt(birth_text_1[1]);
+            if (month == month_tomorrow && day == day_tomorrow) match_count2++;
+          }
+
+          if (match_count > 0) {
+            document.getElementById("Birthday_parent").innerHTML = "<ons-card><div class=\"title\" id=\"Birthday\"></div>";
+            if (match_count2 > 0) document.getElementById("Birthday_parent").innerHTML += "<div class=\"content\" id=\"Birthday2\">";
+            document.getElementById("Birthday_parent").innerHTML += "</ons-card>";
+            document.getElementById("Birthday").innerHTML = "今日誕生日を迎える人が" + match_count + "人います🎉";
+            if (match_count2 > 0) document.getElementById("Birthday2").innerHTML = "明日誕生日を迎える人が" + match_count2 + "人います🎉";
+          }else {
+            if (match_count2 > 0) {
+              document.getElementById("Birthday_parent").innerHTML = "<ons-card><div class=\"content\" id=\"Birthday2\"></ons-card>";
+              document.getElementById("Birthday2").innerHTML = "明日誕生日を迎える人が" + match_count2 + "人います🎉";
+            }else {
+              document.getElementById("Birthday_parent").innerHTML = "";
+            }
+          }
+          setTimeout("CheckBirthday()", 1000);
+        }
+        </script>
+
+        <ons-card>
+          <div class="title">試験まで</div>
+          <div id="countdown"></div>
+          <script type="text/javascript">
+          function main() {
+            var now = new Date();
+            var test_date = new Date( 2018, 10, 19, 0, 0 );
+            var day = (test_date.getTime() - now.getTime()) / 1000 / 60 / 60 / 24;
+            var hour = (test_date.getTime() - now.getTime() - Math.floor(day) * 1000 * 60 * 60 *24) / 1000 / 60 / 60;
+            document.getElementById("countdown").innerHTML = "";
+            if (Math.floor(day) > 0) document.getElementById("countdown").innerHTML += "残り" + Math.floor(day) + "日";
+            if (Math.floor(hour) > 0) document.getElementById("countdown").innerHTML += Math.floor(hour) + "時間";
+            setTimeout("main()", 1000);
+          }
+          main();
+          </script>
+        </ons-card>
+
+
+        <div id="Syoutesuto_parent">
+          <ons-card>
+            <div class="content">
+              <ons-list-header>小テスト範囲</ons-list-header>
+              <ul class="list">
+                <div id="Syoutesuto">
+                  <li class="list-item">
+                    <div class="list-item__right">
+                      <ons-progress-circular indeterminate></ons-progress-circular>
+                    </div>
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </ons-card>
+        </div>
+
+        <div id="Event_parent">
+          <ons-card>
+            <div class="content">
+              <ons-list-header>イベント</ons-list-header>
+              <ul class="list" id="Event">
+                <li class="list-item">
+                  <ons-progress-circular indeterminate></ons-progress-circular>
+                </li>
+              </ul>
+            </div>
+          </ons-card>
+        </div>
+
+        <ons-card>
+          <div class="content">
+            <ons-list-header>英語</ons-list-header>
+            <ul class="list" id="English">
+              <li class="list-item">
+                <ons-progress-circular indeterminate></ons-progress-circular>
+              </li>
+            </ul>
+          </div>
+        </ons-card>
+
+      </div>
+
+      <script type="text/javascript">
+      var output = "";
+      var text;
+      var text_2;
+      var text_3;
+      var text2;
+      var text3;
+      var text4_0;
+      var text4_1;
+      var text5_0;
+      var text5_1;
+      function getData() {
+        var xmlhttp = new XMLHttpRequest();
+        var dc;
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4) {
+            document.getElementById("Syoutesuto").innerHTML = "";
+            if (xmlhttp.status == 200) {
+              text = xmlhttp.responseText.split("\n");
+              text_2 = text[0].split(",");
+              text_3 = text[1].split(",");
+              for (var i = 0; i < text.length; i++) {
+                var text_ = text[i].split(",");
+                document.getElementById("Syoutesuto").innerHTML += "<li class=\"list-item\"><div class=\"list-item__center\">" + text_[0] + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" + text_[1] + "</div></div></ul>";
+              }
+            } else {
+              document.getElementById("Syoutesuto_parent").remove();
+            }
+          }
+        }
+        xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1Blq25RkxCD_k6VLJs-04oI95pD0R59H9FfzkIP8U-kltsF4iQjqyFHKmpcZtYFICzUrd4KN-UG7r/pub?output=csv");
+        xmlhttp.send();
+      }
+
+      function getData2() {
+        var xmlhttp2 = new XMLHttpRequest();
+        var dc;
+        xmlhttp2.onreadystatechange = function() {
+          if (xmlhttp2.readyState == 4) {
+            if (xmlhttp2.status == 200) {
+              text2 = xmlhttp2.responseText.split("\n");
+              console.log(text2);
+              text3 = text2[2].split(",");
+              var elem = document.getElementById("target");
+              elem.innerHTML += text3[1];
+              var elem = document.getElementById("powerstage");
+              elem.innerHTML = text3[2];
+            } else {
+              var elem = document.getElementById("target");
+              elem.innerHTML = "取得できませんでした";
+              var elem = document.getElementById("powerstage");
+              elem.innerHTML = "取得できませんでした";
+            }
+          }
+        }
+        xmlhttp2.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoRnlgjmkcExPoYnvK69L6QcjTiQdFBHqIVCiLOvIUJtB9UCky2i9OsZ0qCk2g1LQFdLmQtciFLbAO/pub?output=csv");
+        xmlhttp2.send();
+      }
+
+      function getData3() {
+        var xmlhttp3 = new XMLHttpRequest();
+        var dc;
+        xmlhttp3.onreadystatechange = function() {
+          if (xmlhttp3.readyState == 4) {
+            document.getElementById("English").innerHTML = "";
+            if (xmlhttp3.status == 200) {
+              text4_0 = RemoveQ(xmlhttp3.responseText).split("\n");
+              console.log(text4_0);
+
+              var label1 = text4_0[0].split(",")[1];
+              var label2 = text4_0[0].split(",")[2];
+
+              for (var i = 2; i < text4_0.length; i++) {
+                text4_1 = text4_0[i].split(",");
+                if (text4_1[0] != "" && text4_1[1] !== undefined && text4_1[2] !== undefined) {
+                  var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">" + label1 + " : " + text4_1[1] + "<br>" + label2 + " : " + text4_1[2] + "</div></ons-list-item>";
+                  document.getElementById("English").innerHTML += output2;
+                }
+              }
+            }
+          }
+        }
+        xmlhttp3.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoRnlgjmkcExPoYnvK69L6QcjTiQdFBHqIVCiLOvIUJtB9UCky2i9OsZ0qCk2g1LQFdLmQtciFLbAO/pub?output=csv");
+        xmlhttp3.send();
+      }
+
+      function getData4() {
+        var xmlhttp4 = new XMLHttpRequest();
+        var dc;
+        xmlhttp4.onreadystatechange = function() {
+          if (xmlhttp4.readyState == 4) {
+            document.getElementById("Event").innerHTML = "";
+            if (xmlhttp4.status == 200) {
+              text5_0 = xmlhttp4.responseText.split("\n");
+              console.log(text5_0);
+              if (text5_0 == "") {
+                document.getElementById("Event_parent").remove();
+              }
+              for (var i = 0; i < text5_0.length; i++) {
+                if (text5_0[i] != "") {
+                  text5_1 = RemoveCR(text5_0[i]).split(",");
+                  console.log(text5_1[1]);
+                  var output3 = "<ons-list-item";
+                  if (text5_1[1] != "") output3 += " expandable";
+                  output3 += ">" + RemoveQ(text5_1[0]);
+                  if (text5_1[1] != "") output3 += "<div class=\"expandable-content\">" + text5_1[1] + "</div>";
+                  output3 += "</ons-list-item>";
+                  document.getElementById("Event").innerHTML += output3;
+                }
+              }
+            }
+          }
+        }
+        xmlhttp4.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRSroeDKgmopsQoM8ddstJcccESeOwPxIEP97-JZT15vPt7Hp-oUNKUXvnzqDW_Q52UmmGQ63ODyRxE/pub?output=csv");
+        xmlhttp4.send();
+      }
+
+      function RemoveQ(str) {
+        if (str !== undefined){
+          var result = str.replace('\"', "");
+          //「str」と「result」が同じ文字列になるまで繰り返す
+          while(result !== str) {
+            str = str.replace('\"', '');
+            result = result.replace('\"', "");
+          }
+          return result;
+        }
+      }
+
+      function RemoveCR(str) {
+        if (str !== undefined){
+          var result = str.replace('\r', "");
+          //「str」と「result」が同じ文字列になるまで繰り返す
+          while(result !== str) {
+            str = str.replace('\r', '');
+            result = result.replace('\r', "");
+          }
+          return result;
+        }
+      }
+
+      getData();
+      //getData2();
+      getData3();
+      getData4();
+      </script>
+
+    </ons-page>
+  </template>
+
+  <template id="settings.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">
+          設定
+        </div>
+      </ons-toolbar>
+
+      <ons-card>
+        <div class="content">
+          <ons-list>
+            <ons-list-item>
+              <div class="center">
+                ダークモード
+              </div>
+              <div class="right">
+                <ons-switch id="dark_toggle"></ons-switch>
+              </div>
+            </ons-list-item>
+          </ons-list>
+        </div>
+      </ons-card>
+
+      <script type="text/javascript">
+        function SetDarkToggle() {
+          var dark_mode_cookie;
+          var r = document.cookie.split(";");
+          r.forEach(function(value) {
+            var content = value.split("=");
+            if(content[0] == "dark_mode") {
+              dark_mode_cookie = content[1];
+            }
+          });
+          if (dark_mode_cookie == "true") {
+            document.getElementById("dark_toggle").setAttribute('checked', 'true');
+          }
+        }
+
+        document.getElementById("dark_toggle").addEventListener('change', function() {
+          var nowDate2 = new Date();
+          var date_end;
+          if (nowDate2.getMonth() <= 2) {
+            date_end = new Date(nowDate2.getFullYear(), 2, 31, 0, 0);
+          }else {
+            date_end = new Date(nowDate2.getFullYear() + 1, 2, 31, 0, 0);
+          }
+          if (document.getElementById("dark_toggle").checked) {
+            document.cookie = "dark_mode=true;expires=" + date_end.toGMTString();
+          }else {
+            document.cookie = "dark_mode=false;expires=" + date_end.toGMTString();
+          }
+          //ChangeTheme();
+          location.reload(true);
+        });
+
+        SetDarkToggle();
+      </script>
+    </ons-page>
+  </template>
+
 </body>
 </html>
