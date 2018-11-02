@@ -259,7 +259,7 @@
             if (xmlhttp_.status == 200) {
                 text_ = xmlhttp_.responseText.split("\n");
                 for (var i = 0; i < text_.length; i++) {
-                  var text2 = text_[count].split(",");
+                  var text2 = text_[i].split(",");
 
                   var name = text2[0];
                   document.getElementById("main_content").innerHTML += "<div id=\"" + name + "_parent\"></div>";
