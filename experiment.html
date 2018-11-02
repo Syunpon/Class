@@ -191,7 +191,7 @@
             current_div.innerHTML = "";
 
             if (xmlhttp.status == 200) {
-              text = xmlhttp.responseText.split("\n");
+              var text = xmlhttp.responseText.split("\n");
               //console.log(text);
 
               output = "<ul class=\"list\">";
