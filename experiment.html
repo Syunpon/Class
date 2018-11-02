@@ -294,7 +294,7 @@
               text = xmlhttp_.responseText.split("\n");
               for (var i = 0; i < text.length; i++) {
                 console.log(text);
-                var text2 = text.split(",");
+                var text2 = text[i].split(",");
 
                 var name = text2[0];
                 var get_type = Number(text2[1]);
