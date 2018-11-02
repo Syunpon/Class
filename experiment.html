@@ -152,7 +152,7 @@
           }else {
             if (match_count2 > 0) {
               document.getElementById("Birthday_parent").innerHTML = "<ons-card><div class=\"content\" id=\"Birthday2\"></div></ons-card>";
-              document.getElementById("Birthday2").innerHTML = "明日誕生日を迎える人が" + match_count2 + "人います🎉";
+              document.getElementById("Birthday2").innerHTML = "明日誕生日を迎える人が" + match_count2 + "人います";
             }else {
               document.getElementById("Birthday_parent").innerHTML = "";
             }
@@ -224,150 +224,92 @@
       </div>
 
       <script type="text/javascript">
-      var output = "";
-      var text;
-      var text_2;
-      var text_3;
-      var text2;
-      var text3;
-      var text4_0;
-      var text4_1;
-      var text5_0;
-      var text5_1;
-      function getData() {
+      function getData(name, url, get_type) {
         var xmlhttp = new XMLHttpRequest();
-        var dc;
+        var output = "";
+
         xmlhttp.onreadystatechange = function() {
           if (xmlhttp.readyState == 4) {
-            document.getElementById("Syoutesuto").innerHTML = "";
+            current_div.innerHTML = "";
+
             if (xmlhttp.status == 200) {
               text = xmlhttp.responseText.split("\n");
-              text_2 = text[0].split(",");
-              text_3 = text[1].split(",");
+
+              output = "<ul class=\"list\">";
+
               for (var i = 0; i < text.length; i++) {
-                var text_ = text[i].split(",");
-                document.getElementById("Syoutesuto").innerHTML += "<li class=\"list-item\"><div class=\"list-item__center\">" + text_[0] + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" + text_[1] + "</div></div></ul>";
+                var text2 = text[i].split(",");
+
+                switch (get_type) {
+                  case 0: //小テスト範囲
+                  output += "<li class=\"list-item\"><div class=\"list-item__center\">" + text2[0] + "</div><div class=\"list-item__right\"><div class=\"list-item__label\">" + text2[1] + "</div></div></li>";
+                  break;
+
+                  case 1: //英語
+                  var label1;
+                  var label2;
+
+                  if (i > 0) {
+                    output += "<ons-list-item expandable>" + text2[0] + "<div class=\"expandable-content\">" + label1 + " : " + text2[1] + "<br>" + label2 + " : " + text2[2] + "</div></ons-list-item>";
+                  }else {
+                    label1 = text2[1];
+                    label2 = text2[2];
+                  }
+                  break;
+
+                  case 2: //イベント
+                  output += "<ons-list-item";
+                  if (text2[1] != "") output += " expandable";
+                  output3 += ">" +text2[0];
+                  if (text2[1] != "") output += "<div class=\"expandable-content\">" + text2[1] + "</div>";
+                  output += "</ons-list-item>";
+                  break;
+                }
               }
+
+              output += "</ul>";
+
+              current_div.innerHTML = output;
             } else {
-              document.getElementById("Syoutesuto_parent").remove();
+              current_div_parent.remove();
             }
           }
         }
-        xmlhttp.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1Blq25RkxCD_k6VLJs-04oI95pD0R59H9FfzkIP8U-kltsF4iQjqyFHKmpcZtYFICzUrd4KN-UG7r/pub?output=csv");
+
+        document.getElementById("main_content").innerHTML += "<div id=\"" + name + "_parent\"></div>";
+        var current_div_parent = document.getElementById(name + "_parent");
+        current_div_parent.innerHTML += "<ons-card><div class=\"content\"><ons-list-header>" + name + "</ons-list-header><div id=\"" + name + "\"></div></div></ons-card>";
+        var current_div = document.getElementById(name);
+        current_div.innerHTML += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__right\"><ons-progress-circular indeterminate></ons-progress-circular></div></li></ul>";
+
+        xmlhttp.open("GET", url);
         xmlhttp.send();
       }
 
-      function getData2() {
-        var xmlhttp2 = new XMLHttpRequest();
-        var dc;
-        xmlhttp2.onreadystatechange = function() {
-          if (xmlhttp2.readyState == 4) {
-            if (xmlhttp2.status == 200) {
-              text2 = xmlhttp2.responseText.split("\n");
-              console.log(text2);
-              text3 = text2[2].split(",");
-              var elem = document.getElementById("target");
-              elem.innerHTML += text3[1];
-              var elem = document.getElementById("powerstage");
-              elem.innerHTML = text3[2];
+      function init(url_) {
+        var xmlhttp_ = new XMLHttpRequest();
+        xmlhttp_.onreadystatechange = function() {
+          if (xmlhttp_.readyState == 4) {
+            if (xmlhttp_.status == 200) {
+              text = xmlhttp_.responseText.split("\n");
+              for (var i = 0; i < text.length; i++) {
+                text2 = text.split(",");
+
+                var name = text2[0];
+                var get_type = Number(text2[1]);
+                var url = text2[2];
+                getData(name, url, get_type);
+              }
             } else {
-              var elem = document.getElementById("target");
-              elem.innerHTML = "取得できませんでした";
-              var elem = document.getElementById("powerstage");
-              elem.innerHTML = "取得できませんでした";
+              document.getElementById("main_content").innerHTML = "取得できませんでした。";
             }
           }
         }
-        xmlhttp2.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoRnlgjmkcExPoYnvK69L6QcjTiQdFBHqIVCiLOvIUJtB9UCky2i9OsZ0qCk2g1LQFdLmQtciFLbAO/pub?output=csv");
-        xmlhttp2.send();
+        xmlhttp_.open("GET", url_);
+        xmlhttp_.send();
       }
 
-      function getData3() {
-        var xmlhttp3 = new XMLHttpRequest();
-        var dc;
-        xmlhttp3.onreadystatechange = function() {
-          if (xmlhttp3.readyState == 4) {
-            document.getElementById("English").innerHTML = "";
-            if (xmlhttp3.status == 200) {
-              text4_0 = RemoveQ(xmlhttp3.responseText).split("\n");
-              console.log(text4_0);
-
-              var label1 = text4_0[0].split(",")[1];
-              var label2 = text4_0[0].split(",")[2];
-
-              for (var i = 2; i < text4_0.length; i++) {
-                text4_1 = text4_0[i].split(",");
-                if (text4_1[0] != "" && text4_1[1] !== undefined && text4_1[2] !== undefined) {
-                  var output2 = "<ons-list-item expandable>" + text4_1[0] + "<div class=\"expandable-content\">" + label1 + " : " + text4_1[1] + "<br>" + label2 + " : " + text4_1[2] + "</div></ons-list-item>";
-                  document.getElementById("English").innerHTML += output2;
-                }
-              }
-            }
-          }
-        }
-        xmlhttp3.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoRnlgjmkcExPoYnvK69L6QcjTiQdFBHqIVCiLOvIUJtB9UCky2i9OsZ0qCk2g1LQFdLmQtciFLbAO/pub?output=csv");
-        xmlhttp3.send();
-      }
-
-      function getData4() {
-        var xmlhttp4 = new XMLHttpRequest();
-        var dc;
-        xmlhttp4.onreadystatechange = function() {
-          if (xmlhttp4.readyState == 4) {
-            document.getElementById("Event").innerHTML = "";
-            if (xmlhttp4.status == 200) {
-              text5_0 = xmlhttp4.responseText.split("\n");
-              console.log(text5_0);
-              if (text5_0 == "") {
-                document.getElementById("Event_parent").remove();
-              }
-              for (var i = 0; i < text5_0.length; i++) {
-                if (text5_0[i] != "") {
-                  text5_1 = RemoveCR(text5_0[i]).split(",");
-                  console.log(text5_1[1]);
-                  var output3 = "<ons-list-item";
-                  if (text5_1[1] != "") output3 += " expandable";
-                  output3 += ">" + RemoveQ(text5_1[0]);
-                  if (text5_1[1] != "") output3 += "<div class=\"expandable-content\">" + text5_1[1] + "</div>";
-                  output3 += "</ons-list-item>";
-                  document.getElementById("Event").innerHTML += output3;
-                }
-              }
-            }
-          }
-        }
-        xmlhttp4.open("GET", "https://docs.google.com/spreadsheets/d/e/2PACX-1vRSroeDKgmopsQoM8ddstJcccESeOwPxIEP97-JZT15vPt7Hp-oUNKUXvnzqDW_Q52UmmGQ63ODyRxE/pub?output=csv");
-        xmlhttp4.send();
-      }
-
-      function RemoveQ(str) {
-        if (str !== undefined){
-          var result = str.replace('\"', "");
-          //「str」と「result」が同じ文字列になるまで繰り返す
-          while(result !== str) {
-            str = str.replace('\"', '');
-            result = result.replace('\"', "");
-          }
-          return result;
-        }
-      }
-
-      function RemoveCR(str) {
-        if (str !== undefined){
-          var result = str.replace('\r', "");
-          //「str」と「result」が同じ文字列になるまで繰り返す
-          while(result !== str) {
-            str = str.replace('\r', '');
-            result = result.replace('\r', "");
-          }
-          return result;
-        }
-      }
-
-      getData();
-      //getData2();
-      getData3();
-      getData4();
+      init("https://docs.google.com/spreadsheets/d/e/2PACX-1vQe-RiFyp3huUW2Efp_ajX6FaGDjOuR6sk88q-SlP0FJ2_UqG8Yf9ALUlca5uHQrJ2Y7taQT2esOnIa/pub?output=csv");
       </script>
 
     </ons-page>
