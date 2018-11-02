@@ -192,7 +192,7 @@
 
             if (xmlhttp.status == 200) {
               text = xmlhttp.responseText.split("\n");
-              console.log(text);
+              //console.log(text);
 
               output = "<ul class=\"list\">";
 
@@ -230,7 +230,7 @@
 
               console.log(output);
               current_div.innerHTML = output;
-              console.log(current_div.innerHTML);
+              console.log("end : " + name);
             } else {
               current_div_parent.remove();
             }
