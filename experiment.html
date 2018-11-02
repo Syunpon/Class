@@ -233,17 +233,17 @@
               console.log("end : " + name);
               init2();
             } else {
-              current_div_parent.remove();
+              current_div_parent.innerHTML = "取得できませんでした。";
               init2();
             }
           }
         }
 
-        document.getElementById("main_content").innerHTML += "<div id=\"" + name + "_parent\"></div>";
+        //document.getElementById("main_content").innerHTML += "<div id=\"" + name + "_parent\"></div>";
         var current_div_parent = document.getElementById(name + "_parent");
-        current_div_parent.innerHTML += "<ons-card><div class=\"content\"><ons-list-header>" + name + "</ons-list-header><div id=\"" + name + "\"></div></div></ons-card>";
+        //current_div_parent.innerHTML += "<ons-card><div class=\"content\"><ons-list-header>" + name + "</ons-list-header><div id=\"" + name + "\"></div></div></ons-card>";
         var current_div = document.getElementById(name);
-        current_div.innerHTML += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__right\"><ons-progress-circular indeterminate></ons-progress-circular></div></li></ul>";
+        //current_div.innerHTML += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__right\"><ons-progress-circular indeterminate></ons-progress-circular></div></li></ul>";
         console.log("init : " + name);
         xmlhttp.open("GET", url);
         xmlhttp.send();
@@ -258,6 +258,15 @@
           if (xmlhttp_.readyState == 4) {
             if (xmlhttp_.status == 200) {
                 text_ = xmlhttp_.responseText.split("\n");
+                for (var i = 0; i < text.length; i++) {
+                  var text2 = text_[count].split(",");
+
+                  var name = text2[0];
+                  document.getElementById("main_content").innerHTML += "<div id=\"" + name + "_parent\"></div>";
+                  document.getElementById(name + "_parent").innerHTML += "<ons-card><div class=\"content\"><ons-list-header>" + name + "</ons-list-header><div id=\"" + name + "\"></div></div></ons-card>";
+                  document.getElementById(name).innerHTML += "<ul class=\"list\"><li class=\"list-item\"><div class=\"list-item__right\"><ons-progress-circular indeterminate></ons-progress-circular></div></li></ul>";
+                  console.log("init : " + name);
+                }
                 init2();
             } else {
               document.getElementById("main_content").innerHTML = "取得できませんでした。";
