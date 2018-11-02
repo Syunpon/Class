@@ -191,7 +191,7 @@
             current_div.innerHTML = "";
 
             if (xmlhttp.status == 200) {
-              var text = xmlhttp.responseText.split("\n");
+              text = xmlhttp.responseText.split("\n");
               //console.log(text);
 
               output = "<ul class=\"list\">";
@@ -231,8 +231,10 @@
               console.log(output);
               current_div.innerHTML = output;
               console.log("end : " + name);
+              init2();
             } else {
               current_div_parent.remove();
+              init2();
             }
           }
         }
@@ -247,20 +249,16 @@
         xmlhttp.send();
       }
 
+      var count = -1;
+      var text_;
+
       function init(url_) {
         var xmlhttp_ = new XMLHttpRequest();
         xmlhttp_.onreadystatechange = function() {
           if (xmlhttp_.readyState == 4) {
             if (xmlhttp_.status == 200) {
-              text = xmlhttp_.responseText.split("\n");
-              for (var i = 0; i < text.length; i++) {
-                var text2 = text[i].split(",");
-
-                var name = text2[0];
-                var get_type = Number(text2[1]);
-                var url = text2[2];
-                console.log("name=" + name + "; url=" + url + "; get_type=" + get_type);
-                getData(name, url, get_type);
+                text_ = xmlhttp_.responseText.split("\n");
+                init2();
               }
             } else {
               document.getElementById("main_content").innerHTML = "取得できませんでした。";
@@ -269,6 +267,19 @@
         }
         xmlhttp_.open("GET", url_);
         xmlhttp_.send();
+      }
+
+      function init2() {
+        count++;
+        //for (var i = 0; i < text.length; i++) {
+        if (count < text_.length) {
+          var text2 = text_[count].split(",");
+
+          var name = text2[0];
+          var get_type = Number(text2[1]);
+          var url = text2[2];
+          console.log("name=" + name + "; url=" + url + "; get_type=" + get_type);
+          getData(name, url, get_type);
       }
 
       init("https://docs.google.com/spreadsheets/d/e/2PACX-1vQe-RiFyp3huUW2Efp_ajX6FaGDjOuR6sk88q-SlP0FJ2_UqG8Yf9ALUlca5uHQrJ2Y7taQT2esOnIa/pub?output=csv");
