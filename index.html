@@ -147,12 +147,24 @@
 
             document.getElementById("Birthday_parent").innerHTML = output_birthday;
 
-            document.getElementById("Birthday").innerHTML = "今日誕生日を迎える人が" + match_count + "人います🎉";
-            if (match_count2 > 0) document.getElementById("Birthday2").innerHTML = "明日誕生日を迎える人が" + match_count2 + "人います🎉";
+            if (match_count > 1) {
+              document.getElementById("Birthday").innerHTML = "今日誕生日を迎える人が" + match_count + "人います🎉";
+            }else {
+              document.getElementById("Birthday").innerHTML = "今日誕生日を迎える人がいます🎉";
+            }
+            if (match_count2 > 1) {
+              document.getElementById("Birthday").innerHTML = "明日誕生日を迎える人が" + match_count + "人います🎉";
+            }else {
+              document.getElementById("Birthday").innerHTML = "明日誕生日を迎える人がいます🎉";
+            }
           }else {
             if (match_count2 > 0) {
               document.getElementById("Birthday_parent").innerHTML = "<ons-card><div class=\"content\" id=\"Birthday2\"></div></ons-card>";
-              document.getElementById("Birthday2").innerHTML = "明日誕生日を迎える人が" + match_count2 + "人います";
+              if (match_count2 > 1) {
+                document.getElementById("Birthday").innerHTML = "明日誕生日を迎える人が" + match_count + "人います🎉";
+              }else {
+                document.getElementById("Birthday").innerHTML = "明日誕生日を迎える人がいます🎉";
+              }
             }else {
               document.getElementById("Birthday_parent").innerHTML = "";
             }
