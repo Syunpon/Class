@@ -335,7 +335,7 @@
               }
               for (var i = 0; i < text5_0.length; i++) {
                 if (text5_0[i] != "") {
-                  text5_1 = RemoveCR(text5_0[i]).split(",");
+                  text5_1 = RemoveQ(RemoveCR(text5_0[i])).split(",");
                   console.log(text5_1[1]);
                   var output3 = "<ons-list-item";
                   if (text5_1[1] != "") output3 += " expandable";
