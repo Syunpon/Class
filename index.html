@@ -46,39 +46,12 @@
 
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  
+  <meta http-equiv=”refresh” content=”0;URL=’https://photos.app.goo.gl/SNtHrQDQA7PjFKmt9'” />
 </head>
 
 <body>
-  <ons-splitter>
-    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-      <ons-page>
-        <ons-list>
-          <ons-list-item onclick="fn.load('home.html')" tappable>
-            ホーム
-          </ons-list-item>
-          <ons-list-item onclick="fn.load('settings.html')" tappable>
-            設定
-          </ons-list-item>
-        </ons-list>
-      </ons-page>
-    </ons-splitter-side>
-
-    <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
-  </ons-splitter>
-
-  <script type="text/javascript">
-  window.fn = {};
-  window.fn.open = function() {
-    var menu = document.getElementById('menu');
-    menu.open();
-  };
-
-  window.fn.load = function(page) {
-    var content = document.getElementById('content');
-    var menu = document.getElementById('menu');
-    content.load(page).then(menu.close.bind(menu));
-  };
-  </script>
+  
 
   <template id="home.html">
 
@@ -183,71 +156,6 @@
 
       </div>
 
-
-      <script type="text/javascript">
-        function SetDarkToggle() {
-          var dark_mode_cookie;
-          var r = document.cookie.split(";");
-          r.forEach(function(value) {
-            var content = value.split("=");
-            if(content[0] == "dark_mode") {
-              dark_mode_cookie = content[1];
-            }
-          });
-          if (dark_mode_cookie == "true") {
-            document.getElementById("dark_toggle").setAttribute('checked', 'true');
-          }
-        }
-
-        document.getElementById("dark_toggle").addEventListener('change', function() {
-          var nowDate2 = new Date();
-          var date_end;
-          if (nowDate2.getMonth() <= 2) {
-            date_end = new Date(nowDate2.getFullYear(), 2, 31, 0, 0);
-          }else {
-            date_end = new Date(nowDate2.getFullYear() + 1, 2, 31, 0, 0);
-          }
-          if (document.getElementById("dark_toggle").checked) {
-            document.cookie = "dark_mode=true;expires=" + date_end.toGMTString();
-          }else {
-            document.cookie = "dark_mode=false;expires=" + date_end.toGMTString();
-          }
-          //ChangeTheme();
-          location.reload(true);
-        });
-
-        SetDarkToggle();
-      </script>
-    </ons-page>
-  </template>
-
-  <template id="settings.html">
-    <ons-page>
-      <ons-toolbar>
-        <div class="left">
-          <ons-toolbar-button onclick="fn.open()">
-            <ons-icon icon="md-menu"></ons-icon>
-          </ons-toolbar-button>
-        </div>
-        <div class="center">
-          設定
-        </div>
-      </ons-toolbar>
-
-      <ons-card>
-        <div class="content">
-          <ons-list>
-            <ons-list-item>
-              <div class="center">
-                ダークモード
-              </div>
-              <div class="right">
-                <ons-switch id="dark_toggle"></ons-switch>
-              </div>
-            </ons-list-item>
-          </ons-list>
-        </div>
-      </ons-card>
 
       <script type="text/javascript">
         function SetDarkToggle() {
